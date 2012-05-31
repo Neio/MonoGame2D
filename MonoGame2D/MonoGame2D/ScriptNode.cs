@@ -25,7 +25,7 @@ namespace MonoGame2D
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
         {
-            _timeLine.Update((float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000));
+            _timeLine.Update(GetTimeDelta(gameTime));
             base.Update(gameTime);
         }
     }

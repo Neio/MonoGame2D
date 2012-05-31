@@ -62,10 +62,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animation.cs" />
     <Compile Include="Canvas.cs" />
     <Compile Include="INode.cs" />
+    <Compile Include="ISpriteCollection.cs" />
     <Compile Include="ISpriteEntity.cs" />
-    <Compile Include="ISpriteSource.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeShadow.cs" />
     <Compile Include="Particle\BaseParticle.cs" />
@@ -90,10 +91,11 @@
     <Compile Include="Script\IUpdatable.cs" />
     <Compile Include="Script\TimeAction.cs" />
     <Compile Include="Script\TimeLine.cs" />
+    <Compile Include="SimpleSpriteAnimation.cs" />
     <Compile Include="Sprite.cs" />
     <Compile Include="SpriteEntity.cs" />
     <Compile Include="Extention.cs" />
-    <Compile Include="Transform2D.cs" />
+    <Compile Include="SpriteList.cs" />
     <Compile Include="Utils\FileSystem.cs" />
     <Compile Include="Utils\GradientColorTable.cs" />
     <Compile Include="Utils\GradientStop.cs" />

@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
    
     ///<summary>Particle collection is container of particles. It contains their life and order</summary>

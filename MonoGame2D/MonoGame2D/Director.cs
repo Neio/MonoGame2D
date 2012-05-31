@@ -39,6 +39,7 @@ namespace MonoGame2D
             graphics.PreferredBackBufferWidth = Width;
             
             Content.RootDirectory = "Content";
+            FileSystem.RootDirectory = Content.RootDirectory;
         }
 
         /// <summary>

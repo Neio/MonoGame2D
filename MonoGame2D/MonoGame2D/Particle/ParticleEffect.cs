@@ -7,6 +7,7 @@ using System.IO;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
 
     ///<summary>Defines particle effect</summary>

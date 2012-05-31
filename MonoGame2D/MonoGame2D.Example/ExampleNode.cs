@@ -16,13 +16,8 @@ namespace MonoGame2D.Example
             base.LoadContents(Context);
             if (!_load )
             {
-                var lava = Context.Load<Texture2D>("lava");
-                var sp = new Sprite(lava);
+                var sp = new Sprite(Context.Load<Texture2D>("lava"));
                 AddSprite(sp);
-                //TimeLine.Repeat(20.0f, t =>
-                //{
-                //    sp.Position = new Microsoft.Xna.Framework.Vector2(0,300f * t.Progress);
-                //});
                 _load = true;
             }
         }

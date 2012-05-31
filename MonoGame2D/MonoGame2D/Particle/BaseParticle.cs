@@ -4,6 +4,7 @@ using System.Text;
 using MonoGame2D;
 using Microsoft.Xna.Framework.Graphics;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
 
     ///<summary>Base particle class which can be processed by stock particle system implementation</summary>

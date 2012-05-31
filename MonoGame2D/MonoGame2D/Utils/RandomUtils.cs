@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Utils
 {
     ///<summary>Provides better global interface for getting Random values</summary>

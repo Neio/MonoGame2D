@@ -1,4 +1,7 @@
 ﻿using System.Xml.Serialization;
+
+
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
 
     ///<summary>Groups from-to values into one pair</summary>

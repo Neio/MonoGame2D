@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Reflection;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Utils
 {
     /// <summary>
@@ -27,7 +28,7 @@ namespace MonoGame2D.Utils
             if (filename == "") throw new ArgumentException("File name can't be empty.", "filename");
 
             //resolve path
-            filename = FileSystem.ResolvePath(filename);
+            filename = FileSystem.GetFilename(filename);
             _filename = filename;
 
             //check file system first, it has biggest priority

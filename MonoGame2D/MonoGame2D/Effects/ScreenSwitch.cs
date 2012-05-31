@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 
+//Source Code modified from Vortex2D.NET
+
 namespace MonoGame2D.Effects
 {
     /// <summary>

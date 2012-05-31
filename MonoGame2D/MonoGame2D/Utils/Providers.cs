@@ -5,6 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.IO;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Utils
 {
     /// <summary>

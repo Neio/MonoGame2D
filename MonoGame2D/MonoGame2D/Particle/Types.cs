@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
 
     ///<summary>Type of emitter region</summary>

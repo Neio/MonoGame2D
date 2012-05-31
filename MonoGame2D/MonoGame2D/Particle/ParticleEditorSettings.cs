@@ -4,6 +4,7 @@ using System.Text;
 using MonoGame2D;
 using Microsoft.Xna.Framework;
 
+//Source Code modified from Vortex2D.NET
 namespace MonoGame2D.Particle {
 
     public class ParticleEditorSettings {

@@ -19,7 +19,7 @@ namespace MonoGame2D
 
 
         Node _parent = null;
-        ContentManager _context = null;
+        ContentManager _content = null;
         List<Node> _children = new List<Node>();
         ///<summary>Location relative to parent node. It defines origin point</summary>
         private Vector2 _location = new Vector2(0,0);
@@ -108,7 +108,7 @@ namespace MonoGame2D
             }
             _children.Add(Node);
             Node._parent = this;
-            Node.LoadContents(_context);
+            Node.LoadContents(_content);
         }
 
         public void RemoveChild(Node Node)
@@ -258,9 +258,9 @@ namespace MonoGame2D
         #endregion
 
        
-        public virtual void LoadContents(ContentManager Context)
+        public virtual void LoadContents(ContentManager Content)
         {
-            _context = Context;
+            _content = Content;
         }
 
         public virtual void UnloadContents()
@@ -306,6 +306,10 @@ namespace MonoGame2D
             }
         }
 
+        protected float GetTimeDelta(GameTime time)
+        {
+            return (float)time.ElapsedGameTime.TotalMilliseconds / 1000;
+        }
     }
 
 
