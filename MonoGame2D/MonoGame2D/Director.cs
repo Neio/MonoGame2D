@@ -80,7 +80,7 @@ namespace MonoGame2D
 
             if (null != _switchEffectPlayer)
             {
-                if (!_switchEffectPlayer.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds))
+                if (!_switchEffectPlayer.Update((float)(gameTime.ElapsedGameTime.TotalMilliseconds/1000)))
                 {
                     _switchEffectPlayer.Dispose();
                     _switchEffectPlayer = null;
@@ -94,25 +94,25 @@ namespace MonoGame2D
             base.Draw(gameTime);
             var device = graphics.GraphicsDevice;
 
+            device.SetRenderTarget(_effectTarget);
+            DrawContent(device, gameTime);
+            device.SetRenderTarget(null);
+
             //draw domain through effect or some else...
             if (_switchEffectPlayer != null)
             {
-                device.SetRenderTarget(_effectTarget);
-                _switchEffectPlayer.Draw(device);
-                device.SetRenderTarget(null);
+                //device.SetRenderTarget(_effectTarget);
+                _switchEffectPlayer.Draw(canvas);
+                //device.SetRenderTarget(null);
             }
             else
             {
-                //using (SpriteBatch batch = new SpriteBatch(device))
-                //{
-                    //device.SetRenderTarget(_effectTarget);
-                    DrawContent(device, gameTime);
-                    //device.SetRenderTarget(null);
-                    //canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.White);
-                //}
-                //canvas.DrawTexturedRect(canvas.Region, _primaryTarget, _primaryTarget.Region, Color.Blank);
+                canvas.Begin();
+                canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.White);
+                canvas.End();
 
             }
+
         }
 
         /// <summary>
@@ -125,20 +125,15 @@ namespace MonoGame2D
             //draw background
             var identity =Matrix.Identity;
             
-            //canvas.SetProjection(ref identity);
-            //canvas.Begin(ref identity, ref identity);
             Scene scene = CurrentScene;
-            //if (null == scene)
-            //{
+            if (null == scene)
+            {
                 device.Clear(Color.Black);
-            //}
+            }
 
-            //canvas.Begin();
             if (scene != null)
                 scene.DrawContent(canvas, gametime, ref identity);
 
-            //canvas.End();
-            //canvas.End();
           
         }
 
@@ -310,7 +305,7 @@ namespace MonoGame2D
                 true, pp.BackBufferFormat, DepthFormat.Depth24);
 
             //2. Create player targeted this effect...
-            _switchEffectPlayer = new SceneSwitchEffectPlayer(switchEffect, timeToSwitch, _effectTarget, _effectTarget);
+            _switchEffectPlayer = new SceneSwitchEffectPlayer(switchEffect, timeToSwitch, _effectTarget, _oldEffectTarget);
         }
 
         #endregion

@@ -68,7 +68,7 @@ namespace MonoGame2D.Effects
         /// Draws the domain switching effect on the specified canvas.
         /// </summary>
         /// <param name="canvas">The canvas to use for effect drawing.</param>
-        void Draw(GraphicsDevice canvas);
+        void Draw(SpriteBatch spriteBatch);
     }
 
     /// <summary>
@@ -144,9 +144,10 @@ namespace MonoGame2D.Effects
 		/// Draws the specified effect on a target.
 		/// </summary>
 		/// <param name="canvas">The canvas.</param>
-		public void Draw(GraphicsDevice canvas) {
+        public void Draw(SpriteBatch spriteBatch)
+        {
 			//resend to effect...
-			_switchEffect.Draw(canvas);
+            _switchEffect.Draw(spriteBatch);
 		}
 
 		#region ISceneSwitchContext Members
@@ -245,7 +246,7 @@ namespace MonoGame2D.Effects
 		/// Draws the domain switching effect on the specified canvas.
 		/// </summary>
 		/// <param name="canvas">The canvas to use for effect drawing.</param>
-		public abstract void Draw(GraphicsDevice canvas);
+		public abstract void Draw(SpriteBatch spriteBatch);
 
 		#endregion
 	}
@@ -270,19 +271,23 @@ namespace MonoGame2D.Effects
         /// Draws the domain switching effect on the specified canvas.
         /// </summary>
         /// <param name="canvas">The canvas to use for effect drawing.</param>
-        public override void Draw(GraphicsDevice canvas)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            SpriteBatch spriteBatch = new SpriteBatch(canvas);
             float progress = Context.Progress * Context.Progress;
-            //drawing old domain
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
 
-            var pp = canvas.PresentationParameters;
+            var pp = spriteBatch.GraphicsDevice.PresentationParameters;
             var size = new Vector2(pp.BackBufferWidth, pp.BackBufferHeight);
 
-            spriteBatch.Draw(Context.OldSceneSprite, size * _direction * progress, Color.White);
+            //drawing old domain
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,
+                Matrix.CreateTranslation(_direction.X * progress * size.X, _direction.Y * progress * size.Y, 0));
+            spriteBatch.Draw(Context.OldSceneSprite, new Vector2(0, 0), Color.White);
+            spriteBatch.End();
 
-            spriteBatch.Draw(Context.NewSceneSprite, size * _direction * progress, Color.White);
+            progress = 1 - progress;
+            spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,
+                Matrix.CreateTranslation(-_direction.X * progress * size.X, -_direction.Y * progress * size.Y, 0));
+            spriteBatch.Draw(Context.NewSceneSprite, new Vector2(0, 0), Color.White);
             
 
 
@@ -304,10 +309,9 @@ namespace MonoGame2D.Effects
         /// Draws the domain fade effect on the specified canvas.
         /// </summary>
         /// <param name="canvas">The canvas to use for effect drawing.</param>
-        public override void Draw(GraphicsDevice canvas)
+        public override void Draw(SpriteBatch spriteBatch)
         {
-            SpriteBatch spriteBatch = new SpriteBatch(canvas);
-            spriteBatch.Begin(SpriteSortMode.BackToFront, BlendState.AlphaBlend);
+            spriteBatch.Begin();
 
             float progress = Context.Progress;
             if (progress < 0.5f)

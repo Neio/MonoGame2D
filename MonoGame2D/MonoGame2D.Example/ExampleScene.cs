@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
 
 namespace MonoGame2D.Example
 {
@@ -20,6 +21,12 @@ namespace MonoGame2D.Example
                     eNode.Rotation = (float)Math.PI * 5 * t.Progress;
                 });
             });
+        }
+
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch graphic, Microsoft.Xna.Framework.GameTime GameTime, ref Microsoft.Xna.Framework.Matrix Transform)
+        {
+            graphic.GraphicsDevice.Clear(Color.Black);
+            base.Draw(graphic, GameTime, ref Transform);
         }
 
     }

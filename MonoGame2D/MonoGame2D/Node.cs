@@ -17,6 +17,7 @@ namespace MonoGame2D
             ComputeTransform();
         }
 
+
         Node _parent = null;
         ContentManager _context = null;
         List<Node> _children = new List<Node>();

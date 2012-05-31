@@ -21,8 +21,10 @@ namespace MonoGame2D.Example
         {
             game = new Director(800,600);
             game.Script.Invoke(() => {
-                game.PushScene(new ExampleScene());//, Effects.SceneSwitchEffects.Fade, 2.0f);
-            });
+                game.PushScene(new ExampleScene(), Effects.SceneSwitchEffects.Fade,2.0f);
+            }).Wait(4.0f).Invoke(()=>{
+                game.PushScene(new ExampleScene(), Effects.SceneSwitchEffects.SlideRight, 2.0f);
+                });
             game.Run();
         }
     }
