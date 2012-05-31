@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGame2D
 {
-    public struct Sprite
+    public class Sprite
     {
         public Vector2 Origin;
         public Texture2D Texture;

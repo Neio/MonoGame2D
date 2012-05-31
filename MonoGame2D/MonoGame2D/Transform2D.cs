@@ -23,6 +23,11 @@ namespace MonoGame2D
 
         private static Transform2D _empty;
 
+        public Matrix ToMatrix()
+        {
+            return new Matrix(M11, M12, 0, TX, M21, M22, 0, TY, 0, 0, 1, 0, 0, 0, 0, 1);
+            //return new Matrix(M11, 0, M12, TX, 0,1,0,TY, M21, 0, M22, TY,  0, 0, 0, 1);
+        }
 
         /// <summary>
         /// Gets a value indicating whether this transformation is empty.

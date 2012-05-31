@@ -1,210 +1,219 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using Microsoft.Xna.Framework.Graphics;
+//using Microsoft.Xna.Framework;
 
-namespace MonoGame2D
-{
-    public class Canvas : IDisposable
-    {
-        SpriteBatch batch;
+//namespace MonoGame2D
+//{
 
-        private const int DefaultBufferSize = 500;
+//    public class Canvas : IDisposable
+//    {
+//        SpriteBatch batch;
 
-        // a basic effect, which contains the shaders that we will use to draw our
-        // primitives.
-        private BasicEffect _basicEffect;
+//        private const int DefaultBufferSize = 500;
 
-        // the device that we will issue draw calls to.
-        private GraphicsDevice _device;
+//        // a basic effect, which contains the shaders that we will use to draw our
+//        // primitives.
+//        private BasicEffect _basicEffect;
 
-        // hasBegun is flipped to true once Begin is called, and is used to make
-        // sure users don't call End before Begin is called.
-        private bool _hasBegun;
+//        // the device that we will issue draw calls to.
+//        private GraphicsDevice _device;
 
-        private bool _isDisposed;
-        private VertexPositionColor[] _lineVertices;
-        private int _lineVertsCount;
-        private VertexPositionColor[] _triangleVertices;
-        private int _triangleVertsCount;
+//        // hasBegun is flipped to true once Begin is called, and is used to make
+//        // sure users don't call End before Begin is called.
+//        private bool _hasBegun;
 
-
-        /// <summary>
-        /// the constructor creates a new PrimitiveBatch and sets up all of the internals
-        /// that PrimitiveBatch will need.
-        /// </summary>
-        /// <param name="graphicsDevice">The graphics device.</param>
-        public Canvas(GraphicsDevice graphicsDevice)
-            : this(graphicsDevice, DefaultBufferSize)
-        {
-        }
-
-        public Canvas(GraphicsDevice graphicsDevice, int bufferSize)
-        {
-            if (graphicsDevice == null)
-            {
-                throw new ArgumentNullException("graphicsDevice");
-            }
-            _device = graphicsDevice;
-
-            _triangleVertices = new VertexPositionColor[bufferSize - bufferSize % 3];
-            _lineVertices = new VertexPositionColor[bufferSize - bufferSize % 2];
-
-            // set up a new basic effect, and enable vertex colors.
-            _basicEffect = new BasicEffect(graphicsDevice);
-            _basicEffect.VertexColorEnabled = true;
-
-            batch = new SpriteBatch(graphicsDevice);
-        }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
-
-        #endregion
-
-        Matrix _currentMatrix = Matrix.Identity;
-
-        public Matrix CurrentMatrix { get {
-            return _currentMatrix;
-        } }
-
-        public void SetProjection(ref Matrix projection)
-        {
-            _basicEffect.Projection = projection;
-            _currentMatrix = projection;
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing && !_isDisposed)
-            {
-                if (_basicEffect != null)
-                    _basicEffect.Dispose();
-
-                _isDisposed = true;
-            }
-        }
+//        private bool _isDisposed;
+//        private VertexPositionColor[] _lineVertices;
+//        private int _lineVertsCount;
+//        private VertexPositionColor[] _triangleVertices;
+//        private int _triangleVertsCount;
 
 
-        /// <summary>
-        /// Begin is called to tell the PrimitiveBatch what kind of primitives will be
-        /// drawn, and to prepare the graphics card to render those primitives.
-        /// </summary>
-        /// <param name="projection">The projection.</param>
-        /// <param name="view">The view.</param>
-        public void Begin(ref Matrix projection, ref Matrix view)
-        {
-            if (_hasBegun)
-            {
-                throw new InvalidOperationException("End must be called before Begin can be called again.");
-            }
+//        /// <summary>
+//        /// the constructor creates a new PrimitiveBatch and sets up all of the internals
+//        /// that PrimitiveBatch will need.
+//        /// </summary>
+//        /// <param name="graphicsDevice">The graphics device.</param>
+//        public Canvas(GraphicsDevice graphicsDevice)
+//            : this(graphicsDevice, DefaultBufferSize)
+//        {
+//        }
 
-            //tell our basic effect to begin.
-            _basicEffect.Projection = projection;
-            _basicEffect.View = view;
-            _basicEffect.CurrentTechnique.Passes[0].Apply();
+//        public Canvas(GraphicsDevice graphicsDevice, int bufferSize)
+//        {
+//            if (graphicsDevice == null)
+//            {
+//                throw new ArgumentNullException("graphicsDevice");
+//            }
+//            _device = graphicsDevice;
 
-            // flip the error checking boolean. It's now ok to call AddVertex, Flush,
-            // and End.
-            _hasBegun = true;
-        }
+//            _triangleVertices = new VertexPositionColor[bufferSize - bufferSize % 3];
+//            _lineVertices = new VertexPositionColor[bufferSize - bufferSize % 2];
 
-        public bool IsReady()
-        {
-            return _hasBegun;
-        }
+//            // set up a new basic effect, and enable vertex colors.
+//            _basicEffect = new BasicEffect(graphicsDevice);
+//            _basicEffect.VertexColorEnabled = true;
 
-        public void AddVertex(Vector2 vertex, Color color, PrimitiveType primitiveType)
-        {
-            if (!_hasBegun)
-            {
-                throw new InvalidOperationException("Begin must be called before AddVertex can be called.");
-            }
-            if (primitiveType == PrimitiveType.LineStrip ||
-                primitiveType == PrimitiveType.TriangleStrip)
-            {
-                throw new NotSupportedException("The specified primitiveType is not supported by PrimitiveBatch.");
-            }
+//            batch = new SpriteBatch(graphicsDevice);
+//        }
 
-            if (primitiveType == PrimitiveType.TriangleList)
-            {
-                if (_triangleVertsCount >= _triangleVertices.Length)
-                {
-                    FlushTriangles();
-                }
-                _triangleVertices[_triangleVertsCount].Position = new Vector3(vertex, -0.1f);
-                _triangleVertices[_triangleVertsCount].Color = color;
-                _triangleVertsCount++;
-            }
-            if (primitiveType == PrimitiveType.LineList)
-            {
-                if (_lineVertsCount >= _lineVertices.Length)
-                {
-                    FlushLines();
-                }
-                _lineVertices[_lineVertsCount].Position = new Vector3(vertex, 0f);
-                _lineVertices[_lineVertsCount].Color = color;
-                _lineVertsCount++;
-            }
-        }
+//        #region IDisposable Members
+
+//        public void Dispose()
+//        {
+//            batch.Dispose();
+//            Dispose(true);
+//            GC.SuppressFinalize(this);
+//        }
+
+//        #endregion
+
+//        public SpriteBatch SpriteBatch {
+//            get {
+//                return batch;
+//            }
+//        }
+
+//        Matrix _currentMatrix = Matrix.Identity;
+
+//        public Matrix CurrentMatrix { get {
+//            return _currentMatrix;
+//        } }
 
 
-        /// <summary>
-        /// End is called once all the primitives have been drawn using AddVertex.
-        /// it will call Flush to actually submit the draw call to the graphics card, and
-        /// then tell the basic effect to end.
-        /// </summary>
-        public void End()
-        {
-            if (!_hasBegun)
-            {
-                throw new InvalidOperationException("Begin must be called before End can be called.");
-            }
+//        public void SetProjection(ref Matrix projection)
+//        {
+//            _basicEffect.Projection = projection;
+//            _currentMatrix = projection;
+//        }
 
-            // Draw whatever the user wanted us to draw
-            FlushTriangles();
-            FlushLines();
+//        protected virtual void Dispose(bool disposing)
+//        {
+//            if (disposing && !_isDisposed)
+//            {
+//                if (_basicEffect != null)
+//                    _basicEffect.Dispose();
 
-            _hasBegun = false;
-        }
+//                _isDisposed = true;
+//            }
+//        }
 
-        private void FlushTriangles()
-        {
-            if (!_hasBegun)
-            {
-                throw new InvalidOperationException("Begin must be called before Flush can be called.");
-            }
-            if (_triangleVertsCount >= 3)
-            {
-                int primitiveCount = _triangleVertsCount / 3;
-                // submit the draw call to the graphics card
-                _device.SamplerStates[0] = SamplerState.AnisotropicClamp;
-                _device.DrawUserPrimitives(PrimitiveType.TriangleList, _triangleVertices, 0, primitiveCount);
-                _triangleVertsCount -= primitiveCount * 3;
-            }
-        }
 
-        private void FlushLines()
-        {
-            if (!_hasBegun)
-            {
-                throw new InvalidOperationException("Begin must be called before Flush can be called.");
-            }
-            if (_lineVertsCount >= 2)
-            {
-                int primitiveCount = _lineVertsCount / 2;
-                // submit the draw call to the graphics card
-                _device.SamplerStates[0] = SamplerState.AnisotropicClamp;
-                _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, primitiveCount);
-                _lineVertsCount -= primitiveCount * 2;
-            }
-        }
-    }
-}
+//        /// <summary>
+//        /// Begin is called to tell the PrimitiveBatch what kind of primitives will be
+//        /// drawn, and to prepare the graphics card to render those primitives.
+//        /// </summary>
+//        /// <param name="projection">The projection.</param>
+//        /// <param name="view">The view.</param>
+//        public void Begin(ref Matrix projection, ref Matrix view)
+//        {
+//            if (_hasBegun)
+//            {
+//                throw new InvalidOperationException("End must be called before Begin can be called again.");
+//            }
+
+//            //tell our basic effect to begin.
+//            _basicEffect.Projection = projection;
+//            _basicEffect.View = view;
+//            _basicEffect.CurrentTechnique.Passes[0].Apply();
+
+//            // flip the error checking boolean. It's now ok to call AddVertex, Flush,
+//            // and End.
+//            _hasBegun = true;
+//        }
+
+//        public bool IsReady()
+//        {
+//            return _hasBegun;
+//        }
+
+//        public void AddVertex(Vector2 vertex, Color color, PrimitiveType primitiveType)
+//        {
+//            if (!_hasBegun)
+//            {
+//                throw new InvalidOperationException("Begin must be called before AddVertex can be called.");
+//            }
+//            if (primitiveType == PrimitiveType.LineStrip ||
+//                primitiveType == PrimitiveType.TriangleStrip)
+//            {
+//                throw new NotSupportedException("The specified primitiveType is not supported by PrimitiveBatch.");
+//            }
+
+//            if (primitiveType == PrimitiveType.TriangleList)
+//            {
+//                if (_triangleVertsCount >= _triangleVertices.Length)
+//                {
+//                    FlushTriangles();
+//                }
+//                _triangleVertices[_triangleVertsCount].Position = new Vector3(vertex, -0.1f);
+//                _triangleVertices[_triangleVertsCount].Color = color;
+//                _triangleVertsCount++;
+//            }
+//            if (primitiveType == PrimitiveType.LineList)
+//            {
+//                if (_lineVertsCount >= _lineVertices.Length)
+//                {
+//                    FlushLines();
+//                }
+//                _lineVertices[_lineVertsCount].Position = new Vector3(vertex, 0f);
+//                _lineVertices[_lineVertsCount].Color = color;
+//                _lineVertsCount++;
+//            }
+//        }
+
+
+//        /// <summary>
+//        /// End is called once all the primitives have been drawn using AddVertex.
+//        /// it will call Flush to actually submit the draw call to the graphics card, and
+//        /// then tell the basic effect to end.
+//        /// </summary>
+//        public void End()
+//        {
+//            if (!_hasBegun)
+//            {
+//                throw new InvalidOperationException("Begin must be called before End can be called.");
+//            }
+
+//            // Draw whatever the user wanted us to draw
+//            FlushTriangles();
+//            FlushLines();
+
+//            _hasBegun = false;
+//        }
+
+//        private void FlushTriangles()
+//        {
+//            if (!_hasBegun)
+//            {
+//                throw new InvalidOperationException("Begin must be called before Flush can be called.");
+//            }
+//            if (_triangleVertsCount >= 3)
+//            {
+//                int primitiveCount = _triangleVertsCount / 3;
+//                // submit the draw call to the graphics card
+//                _device.SamplerStates[0] = SamplerState.AnisotropicClamp;
+//                _device.DrawUserPrimitives(PrimitiveType.TriangleList, _triangleVertices, 0, primitiveCount);
+//                _triangleVertsCount -= primitiveCount * 3;
+//            }
+//        }
+
+//        private void FlushLines()
+//        {
+//            if (!_hasBegun)
+//            {
+//                throw new InvalidOperationException("Begin must be called before Flush can be called.");
+//            }
+//            if (_lineVertsCount >= 2)
+//            {
+//                int primitiveCount = _lineVertsCount / 2;
+//                // submit the draw call to the graphics card
+//                _device.SamplerStates[0] = SamplerState.AnisotropicClamp;
+//                _device.DrawUserPrimitives(PrimitiveType.LineList, _lineVertices, 0, primitiveCount);
+//                _lineVertsCount -= primitiveCount * 2;
+//            }
+//        }
+//    }
+//}

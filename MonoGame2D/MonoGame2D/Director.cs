@@ -18,7 +18,7 @@ namespace MonoGame2D
         private RenderTarget2D _oldEffectTarget;
 
         private SceneSwitchEffectPlayer _switchEffectPlayer;
-
+        SpriteBatch canvas = null;
 
         //private GraphSnapshot _graphSnapshot = new GraphSnapshot();
         private Stack<Scene> _sceneStack = new Stack<Scene>();
@@ -35,9 +35,9 @@ namespace MonoGame2D
             graphics = new GraphicsDeviceManager(this);
 
             graphics.IsFullScreen = FullScreen;
-            graphics.PreferredBackBufferHeight = Width;
-            graphics.PreferredBackBufferWidth = Height;
-
+            graphics.PreferredBackBufferHeight = Height;
+            graphics.PreferredBackBufferWidth = Width;
+            
             Content.RootDirectory = "Content";
         }
 
@@ -51,7 +51,11 @@ namespace MonoGame2D
         protected override void LoadContent()
         {
             // TODO: use this.Content to load your game content here
-
+            PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
+            _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
+                true, pp.BackBufferFormat, DepthFormat.Depth24);
+            //canvas = new Canvas(graphics.GraphicsDevice);
+            canvas = new SpriteBatch( graphics.GraphicsDevice);
         }
 
         protected override void UnloadContent()
@@ -64,7 +68,7 @@ namespace MonoGame2D
             
             base.Update(gameTime);
 
-            _script.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds);
+            _script.Update((float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000));
 
             if (CurrentScene != null)
             {
@@ -88,20 +92,24 @@ namespace MonoGame2D
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
-            var canvas = graphics.GraphicsDevice;
+            var device = graphics.GraphicsDevice;
 
             //draw domain through effect or some else...
             if (_switchEffectPlayer != null)
             {
-                canvas.SetRenderTarget(_effectTarget);
-                _switchEffectPlayer.Draw(canvas);
-                canvas.SetRenderTarget(null);
+                device.SetRenderTarget(_effectTarget);
+                _switchEffectPlayer.Draw(device);
+                device.SetRenderTarget(null);
             }
             else
             {
-                canvas.SetRenderTarget(_effectTarget);
-                DrawContent(canvas, gameTime);
-                canvas.SetRenderTarget(null);
+                //using (SpriteBatch batch = new SpriteBatch(device))
+                //{
+                    //device.SetRenderTarget(_effectTarget);
+                    DrawContent(device, gameTime);
+                    //device.SetRenderTarget(null);
+                    //canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.White);
+                //}
                 //canvas.DrawTexturedRect(canvas.Region, _primaryTarget, _primaryTarget.Region, Color.Blank);
 
             }
@@ -113,19 +121,25 @@ namespace MonoGame2D
         /// <param name="canvas">The canvas.</param>
         private void DrawContent(GraphicsDevice device, GameTime gametime)
         {
-            SpriteBatch canvas = new SpriteBatch(device);
+            
             //draw background
+            var identity =Matrix.Identity;
+            
+            //canvas.SetProjection(ref identity);
+            //canvas.Begin(ref identity, ref identity);
             Scene scene = CurrentScene;
-            if (null == scene)
-            {
+            //if (null == scene)
+            //{
                 device.Clear(Color.Black);
-            }
+            //}
 
-            canvas.Begin();
+            //canvas.Begin();
             if (scene != null)
-                scene.Draw(canvas, gametime);
-            canvas.End();
+                scene.DrawContent(canvas, gametime, ref identity);
 
+            //canvas.End();
+            //canvas.End();
+          
         }
 
 

@@ -6,28 +6,49 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using MonoGame2D.Script;
+using OpenTK.Graphics.OpenGL;
 
 namespace MonoGame2D
 {
     public class Node: INode
     {
+        public Node()
+        {
+            ComputeTransform();
+        }
+
         Node _parent = null;
         ContentManager _context = null;
         List<Node> _children = new List<Node>();
         ///<summary>Location relative to parent node. It defines origin point</summary>
-        private Vector2 _location;
+        private Vector2 _location = new Vector2(0,0);
         ///<summary>Origin point, it allows change rotation/scaling point relative to location</summary>
         private Vector2 _origin;
         ///<summary>Element scale. Origin point is location point or (0,0) in node space</summary>
         private Vector2 _scale = Vector2.One;
         ///<summary>Rotation of node around its origin point</summary>
-        private float _rotation;
+        private float _rotation  = 0;
         ///<summary>Post-computed 2D transform of this node</summary>
-        private Transform2D _transform;
+        private Matrix _transform;
+
+        #region Sprites
+
+        List<Sprite> sprites = new List<Sprite>();
+
+        public void AddSprite(Sprite sprite)
+        {
+            sprites.Add(sprite);
+        }
+
+        public void RemoveSprite(Sprite sprite)
+        {
+            sprites.Remove(sprite);
+        }
+        #endregion
 
         #region Childen
 
-       
+
 
         public IEnumerable<Node> Children
         {
@@ -79,12 +100,13 @@ namespace MonoGame2D
 
         public void AddChild(Node Node)
         {
+
             if (Node.Parent != null)
             {
                 Node.Parent.RemoveChild(Node);
             }
             _children.Add(Node);
-            Node.Parent = this;
+            Node._parent = this;
             Node.LoadContents(_context);
         }
 
@@ -191,7 +213,7 @@ namespace MonoGame2D
         /// Transformation of current node relative to parent one
         /// </summary>
         /// <value>The node transform.</value>
-        public Transform2D Transform
+        public Matrix Transform
         {
             get { return _transform; }
         }
@@ -200,11 +222,11 @@ namespace MonoGame2D
         /// Transformation of current node relative to global screen space. You can use it for transforming local values to screen or reverse - screen to local
         /// </summary>
         /// <value>The node screen transform.</value>
-        public Transform2D ScreenTransform
+        public Matrix ScreenTransform
         {
             get
             {
-                Transform2D transform = _transform;
+                Matrix transform = _transform;
                 Node parent = Parent;
                 while (parent != null)
                 {
@@ -222,19 +244,12 @@ namespace MonoGame2D
         {
             //TODO Investigate and optimize!
 
-            Transform2D origin, revOrigin, scale, rotation, translation;
-            Transform2D.CreateScaling(ref _scale, out scale);
-            Transform2D.CreateRotation(_rotation, out rotation);
-            Transform2D.CreateTranslation(ref _origin, out origin);
-            Transform2D.CreateTranslation(ref _location, out translation);
-
-            //make reverse origin
-            revOrigin.M11 = origin.M11;
-            revOrigin.M12 = origin.M12;
-            revOrigin.M21 = origin.M21;
-            revOrigin.M22 = origin.M22;
-            revOrigin.TX = -origin.TX;
-            revOrigin.TY = -origin.TY;
+            Matrix origin, revOrigin, scale, rotation, translation;
+            scale = Matrix.CreateScale(_scale.X, _scale.Y, 1);
+            Matrix.CreateRotationZ(_rotation, out rotation);
+            origin = Matrix.CreateTranslation(_origin.X, _origin.Y, 0);
+            revOrigin = Matrix.CreateTranslation(-_origin.X, -_origin.Y, 0);
+            translation = Matrix.CreateTranslation(_location.X, _location.Y, 0);
 
             _transform = revOrigin * scale * rotation * translation * origin;
         }
@@ -252,23 +267,32 @@ namespace MonoGame2D
             
         }
 
-        public virtual void Draw(SpriteBatch graphic, GameTime GameTime)
+        public virtual void Draw(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         { 
             
         }
 
-        public virtual void DrawContent(SpriteBatch graphic, GameTime GameTime)
+        public virtual void DrawContent(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         {
-            Draw(graphic, GameTime);
-            DrawChildren(graphic, GameTime);
+            var matrix = Transform * _transform;
+            Draw(graphic, GameTime, ref matrix);
+            DrawChildren(graphic, GameTime, ref matrix);
         }
 
-        public virtual void DrawChildren(SpriteBatch graphic, GameTime GameTime)
+        public virtual void DrawChildren(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         {
             foreach (var child in _children)
             {
-                child.DrawContent(graphic, GameTime);
+                child.DrawContent(graphic, GameTime, ref Transform);
             }
+
+            graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,
+                Transform);
+            foreach (var item in sprites)
+            {
+                item.Draw(graphic);
+            }
+            graphic.End();
         }
 
         public virtual void Update(GameTime gameTime)
