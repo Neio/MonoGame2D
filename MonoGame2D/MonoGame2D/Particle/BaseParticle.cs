@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using MonoGame2D;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGame2D.Particle {
 
@@ -14,7 +15,9 @@ namespace MonoGame2D.Particle {
         float _lifeProgress;
 
         ///<summary>Creates particle with specified lifetime</summary>
-        public BaseParticle(ISpriteSource provider, float timeToLive) : base(provider) {
+        public BaseParticle(Texture2D provider, float timeToLive)
+            : base(provider)
+        {
             _timeToLive = timeToLive;
             _lifeProgress = 0;
         }

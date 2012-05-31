@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using MonoGame2D.Utils;
 using System.IO;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace MonoGame2D.Particle {
 
@@ -22,7 +23,7 @@ namespace MonoGame2D.Particle {
 		/// Gets or sets the sprite source to use for creating new particles.
 		/// </summary>
 		/// <value>The sprite source for new particles.</value>
-        public  ISpriteSource SpriteSource { get; set; }
+        public Texture2D SpriteSource { get; set; }
 
         ///<summary>Parameters of particle generation</summary>
         public ParticleEffectParameters Params {
@@ -65,7 +66,9 @@ namespace MonoGame2D.Particle {
         }
 
         ///<summary>Create default particle effect</summary>
-        public ParticleEffect(ISpriteSource spriteProvider) : this() {
+        public ParticleEffect(Texture2D spriteProvider)
+            : this()
+        {
             SpriteSource = spriteProvider;
         }
 
@@ -81,9 +84,9 @@ namespace MonoGame2D.Particle {
             Emitter = effectFileContent.Emitter;
         }
 
-        public ParticleEffect(string fileName, ISpriteSource spriteProvider)
+        public ParticleEffect(string fileName, Texture2D sprite)
             : this(fileName) {
-            SpriteSource = spriteProvider;
+                SpriteSource = sprite;
 		}
 
 		#endregion

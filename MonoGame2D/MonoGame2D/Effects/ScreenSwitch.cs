@@ -290,11 +290,6 @@ namespace MonoGame2D.Effects
             spriteBatch.Draw(Context.NewSceneSprite, new Vector2(0, 0), Color.White);
             
 
-
-            //canvas.DrawSprite(canvas.Region + size * _direction * progress, Context.OldSceneSprite, Color.White);
-            //drawing new domain
-            //canvas.DrawSprite(canvas.Region - size * _direction * (1 - progress), Context.NewSceneSprite, Color.White);
-
             spriteBatch.End();
         }
     }

@@ -18,7 +18,7 @@ namespace MonoGame2D.Example
                 TimeLine.Repeat(20.0f, t =>
                 {
                     eNode.Location = new Microsoft.Xna.Framework.Vector2( 500f * t.Progress);
-                    eNode.Rotation = (float)Math.PI * 5 * t.Progress;
+                    //eNode.Rotation = (float)Math.PI * 5 * t.Progress;
                 });
             });
         }

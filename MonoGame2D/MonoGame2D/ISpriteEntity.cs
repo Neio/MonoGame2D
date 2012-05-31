@@ -40,7 +40,7 @@ namespace MonoGame2D
         /// Gets the sprite source objects.
         /// </summary>
         /// <value>The <see cref="ISpriteProvider"/> instance.</value>
-        ISpriteSource SpriteProvider { get; }
+        Texture2D SpriteProvider { get; }
 
         /// <summary>
         /// Queries parameters of sprite entity.

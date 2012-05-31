@@ -16,7 +16,7 @@ namespace MonoGame2D
         protected Vector2 _size;
         protected float _angle;
         protected Color _colorTint;
-        protected ISpriteSource _spriteProvider;
+        protected Texture2D _spriteProvider;
         protected bool _originalSize;
 
         #region ISpriteEntity Members
@@ -37,7 +37,7 @@ namespace MonoGame2D
         /// <value>The size of entity.</value>
         public Vector2 Size
         {
-            get { return _originalSize ? _spriteProvider.ToSprite().Size() : _size; }
+            get { return _originalSize ? _spriteProvider.Size() : _size; }
             set { _size = value; _originalSize = false; }
         }
 
@@ -65,7 +65,7 @@ namespace MonoGame2D
         /// Gets the sprite source objects.
         /// </summary>
         /// <value>The <see cref="ISpriteProvider"/> instance.</value>
-        public ISpriteSource SpriteProvider
+        public Texture2D SpriteProvider
         {
             get { return _spriteProvider; }
             set
@@ -89,7 +89,7 @@ namespace MonoGame2D
             size = Size;
             angle = _angle;
             colorTint = _colorTint;
-            sprite = _spriteProvider.ToSprite();
+            sprite = _spriteProvider;
         }
 
         #endregion
@@ -98,7 +98,7 @@ namespace MonoGame2D
         /// Creates a new instance of the <see cref="SpriteEntity"/> class.
         /// </summary>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(ISpriteSource sprite)
+        public SpriteEntity(Texture2D sprite)
             : this(Vector2.Zero, Vector2.Zero, 0, Color.TransparentWhite, sprite)
         {
             _originalSize = true;
@@ -110,7 +110,7 @@ namespace MonoGame2D
         /// </summary>
         /// <param name="xy">The sprite entity location.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, Texture2D sprite)
             : this(xy, Vector2.Zero, 0, Color.TransparentWhite, sprite)
         {
             _originalSize = true;
@@ -122,7 +122,7 @@ namespace MonoGame2D
         /// <param name="xy">The sprite entity location.</param>
         /// <param name="angle">The rotation angle in radians.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, float angle, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, float angle, Texture2D sprite)
             : this(xy, Vector2.Zero, angle, Color.TransparentWhite, sprite)
         {
             _originalSize = true;
@@ -134,7 +134,7 @@ namespace MonoGame2D
         /// <param name="xy">The sprite entity location.</param>
         /// <param name="size">The size of sprite entity.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, Vector2 size, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, Vector2 size, Texture2D sprite)
             : this(xy, Vector2.Zero, 0, Color.TransparentWhite, sprite)
         {
 
@@ -147,7 +147,7 @@ namespace MonoGame2D
         /// <param name="angle">The rotation angle in radians.</param>
         /// <param name="colorTint">The color tint.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, float angle, Color colorTint, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, float angle, Color colorTint, Texture2D sprite)
             : this(xy, Vector2.Zero, angle, colorTint, sprite)
         {
             _originalSize = true;
@@ -160,7 +160,7 @@ namespace MonoGame2D
         /// <param name="size">The size of sprite entity.</param>
         /// <param name="colorTint">The color tint.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, Vector2 size, Color colorTint, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, Vector2 size, Color colorTint, Texture2D sprite)
             : this(xy, size, 0, colorTint, sprite)
         {
         }
@@ -173,7 +173,7 @@ namespace MonoGame2D
         /// <param name="angle">The rotation angle in radians.</param>
         /// <param name="colorTint">The color tint.</param>
         /// <param name="sprite">The sprite provider.</param>
-        public SpriteEntity(Vector2 xy, Vector2 size, float angle, Color colorTint, ISpriteSource sprite)
+        public SpriteEntity(Vector2 xy, Vector2 size, float angle, Color colorTint, Texture2D sprite)
         {
             _spriteProvider = sprite;
             _xy = xy;
