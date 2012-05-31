@@ -32,17 +32,77 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GamepadBridge">
+      <HintPath>..\..\Lib\GamepadBridge.dll</HintPath>
+    </Reference>
+    <Reference Include="GamepadConfigControls">
+      <HintPath>..\..\Lib\GamepadConfigControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network.Windows, Version=2011.3.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Lidgren.Network.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoGame.Framework.Windows, Version=2.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\MonoGame.Framework.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK, Version=1.0.0.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\OpenTK.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Tao.Sdl, Version=1.2.13.0, Culture=neutral, PublicKeyToken=9c7a200e36c0094e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Lib\Tao.Sdl.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="Canvas.cs" />
+    <Compile Include="INode.cs" />
+    <Compile Include="ISpriteEntity.cs" />
+    <Compile Include="ISpriteSource.cs" />
+    <Compile Include="Node.cs" />
+    <Compile Include="NodeShadow.cs" />
+    <Compile Include="Particle\BaseParticle.cs" />
+    <Compile Include="Particle\EmitterParameters.cs" />
+    <Compile Include="Particle\GenericParticle.cs" />
+    <Compile Include="Particle\IParticleProvider.cs" />
+    <Compile Include="Particle\ParticleCollection.cs" />
+    <Compile Include="Particle\ParticleEditorSettings.cs" />
+    <Compile Include="Particle\ParticleEffect.cs" />
+    <Compile Include="Particle\ParticleEffectFile.cs" />
+    <Compile Include="Particle\ParticleEffectParameters.cs" />
+    <Compile Include="Particle\ParticleSystem.cs" />
+    <Compile Include="Particle\Range.cs" />
+    <Compile Include="Particle\Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scene.cs" />
+    <Compile Include="Director.cs" />
+    <Compile Include="Effects\ScreenSwitch.cs" />
+    <Compile Include="ScriptNode.cs" />
+    <Compile Include="Script\IActionChain.cs" />
+    <Compile Include="Script\IActionStatus.cs" />
+    <Compile Include="Script\IUpdatable.cs" />
+    <Compile Include="Script\TimeAction.cs" />
+    <Compile Include="Script\TimeLine.cs" />
+    <Compile Include="Sprite.cs" />
+    <Compile Include="SpriteEntity.cs" />
+    <Compile Include="Extention.cs" />
+    <Compile Include="Transform2D.cs" />
+    <Compile Include="Utils\FileSystem.cs" />
+    <Compile Include="Utils\GradientColorTable.cs" />
+    <Compile Include="Utils\GradientStop.cs" />
+    <Compile Include="Utils\Providers.cs" />
+    <Compile Include="Utils\RandomList.cs" />
+    <Compile Include="Utils\RandomUtils.cs" />
+    <Compile Include="Utils\ResourceFileInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

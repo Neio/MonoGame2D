@@ -5,18 +5,77 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using MonoGame2D.Script;
 
 namespace MonoGame2D
 {
-    public class Node
+    public class Node: INode
     {
+        Node _parent = null;
+        ContentManager _context = null;
+        List<Node> _children = new List<Node>();
+        ///<summary>Location relative to parent node. It defines origin point</summary>
+        private Vector2 _location;
+        ///<summary>Origin point, it allows change rotation/scaling point relative to location</summary>
+        private Vector2 _origin;
+        ///<summary>Element scale. Origin point is location point or (0,0) in node space</summary>
+        private Vector2 _scale = Vector2.One;
+        ///<summary>Rotation of node around its origin point</summary>
+        private float _rotation;
+        ///<summary>Post-computed 2D transform of this node</summary>
+        private Transform2D _transform;
 
         #region Childen
 
-        public Node Parent { get; internal set; }
+       
 
-        ContentManager _context = null;
-        List<Node> _children = new List<Node>();
+        public IEnumerable<Node> Children
+        {
+            get
+            {
+                return _children;
+            }
+        }
+        
+
+        /// <summary>
+        /// Gets the children of the specified type only.
+        /// </summary>
+        /// <typeparam name="T">Type of child to return</typeparam>
+        /// <returns>Enumeration of node children of specified type</returns>
+        public IEnumerable<T> GetChildren<T>() where T : Node
+        {
+            Type returnType = typeof(T);
+            foreach (Node node in Children)
+            {
+                if (returnType.IsInstanceOfType(node))
+                {
+                    yield return node as T;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Parent node for this node
+        /// </summary>
+        /// <value>The parent node.</value>
+        public Node Parent
+        {
+            get { return _parent; }
+            set
+            {
+                //remove node from parent list first
+                if (null != _parent)
+                {
+                    _parent.RemoveChild(this);
+                }
+                //add node to new parent or leave abandoned
+                if (value != null)
+                {
+                    value.AddChild(this);
+                }
+            }
+        }
 
         public void AddChild(Node Node)
         {
@@ -46,8 +105,143 @@ namespace MonoGame2D
                 RemoveChild(node);
             }
         }
+
+        public void MoveToFront(Node childNode)
+        {
+            if (_children.Contains(childNode))
+            {
+                _children.Remove(childNode);
+                _children.Add(childNode);
+            }
+        }
         #endregion
 
+
+        #region Element Geometry Positioning
+
+        /// <summary>
+        /// Gets or sets the location of node relative to its parent.
+        /// </summary>
+        /// <value>The location of node.</value>
+        public virtual Vector2 Location
+        {
+            get { return _location; }
+            set { _location = value; ComputeTransform(); }
+        }
+
+        /// <summary>
+        /// Gets or sets the X component of location of node relative to its parent.
+        /// </summary>
+        /// <value>The X component of location</value>
+        public virtual float LocationX
+        {
+            get { return _location.X; }
+            set
+            {
+                _location.X = value;
+                ComputeTransform();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the Y component of location of node relative to its parent.
+        /// </summary>
+        /// <value>The Y component of location</value>
+        public virtual float LocationY
+        {
+            get { return _location.Y; }
+            set
+            {
+                _location.Y = value;
+                ComputeTransform();
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the origin point offset which is relative to location (like a correction offset).
+        /// </summary>
+        /// <value>The origin point offset of node.</value>
+        public virtual Vector2 Origin
+        {
+            get { return _origin; }
+            set { _origin = value; ComputeTransform(); }
+        }
+
+        /// <summary>
+        /// Gets or sets the scale of node against it origin point (node center).
+        /// </summary>
+        /// <value>The scale of node against it origin point.</value>
+        public virtual Vector2 Scale
+        {
+            get { return _scale; }
+            set { _scale = value; ComputeTransform(); }
+        }
+
+        /// <summary>
+        /// Gets or sets the rotation of node around its origin point.
+        /// </summary>
+        /// <value>The node rotation around its origin point.</value>
+        public virtual float Rotation
+        {
+            get { return _rotation; }
+            set { _rotation = value; ComputeTransform(); }
+        }
+
+        /// <summary>
+        /// Transformation of current node relative to parent one
+        /// </summary>
+        /// <value>The node transform.</value>
+        public Transform2D Transform
+        {
+            get { return _transform; }
+        }
+
+        /// <summary>
+        /// Transformation of current node relative to global screen space. You can use it for transforming local values to screen or reverse - screen to local
+        /// </summary>
+        /// <value>The node screen transform.</value>
+        public Transform2D ScreenTransform
+        {
+            get
+            {
+                Transform2D transform = _transform;
+                Node parent = Parent;
+                while (parent != null)
+                {
+                    transform = transform * parent.Transform;
+                    parent = parent.Parent;
+                }
+                return transform;
+            }
+        }
+
+        /// <summary>
+        /// Updates transform matrix based on all of transformations: scale, rotation and location
+        /// </summary>
+        private void ComputeTransform()
+        {
+            //TODO Investigate and optimize!
+
+            Transform2D origin, revOrigin, scale, rotation, translation;
+            Transform2D.CreateScaling(ref _scale, out scale);
+            Transform2D.CreateRotation(_rotation, out rotation);
+            Transform2D.CreateTranslation(ref _origin, out origin);
+            Transform2D.CreateTranslation(ref _location, out translation);
+
+            //make reverse origin
+            revOrigin.M11 = origin.M11;
+            revOrigin.M12 = origin.M12;
+            revOrigin.M21 = origin.M21;
+            revOrigin.M22 = origin.M22;
+            revOrigin.TX = -origin.TX;
+            revOrigin.TY = -origin.TY;
+
+            _transform = revOrigin * scale * rotation * translation * origin;
+        }
+
+        #endregion
+
+       
         public virtual void LoadContents(ContentManager Context)
         {
             _context = Context;
@@ -58,25 +252,35 @@ namespace MonoGame2D
             
         }
 
-        public virtual void Draw(GraphicsDevice graphic, GameTime TimeDelta)
+        public virtual void Draw(SpriteBatch graphic, GameTime GameTime)
         { 
             
         }
 
-        public virtual void DrawContent(GraphicsDevice graphic, GameTime TimeDelta)
-        { 
-            
+        public virtual void DrawContent(SpriteBatch graphic, GameTime GameTime)
+        {
+            Draw(graphic, GameTime);
+            DrawChildren(graphic, GameTime);
         }
 
-        public virtual void DrawChildren(GraphicsDevice graphic, GameTime TimeDelta)
-        { 
-        
+        public virtual void DrawChildren(SpriteBatch graphic, GameTime GameTime)
+        {
+            foreach (var child in _children)
+            {
+                child.DrawContent(graphic, GameTime);
+            }
         }
 
-        public virtual void Update(GameTime TimeDelta)
-        { 
+        public virtual void Update(GameTime gameTime)
+        {
             
+
+            foreach (var child in _children)
+            {
+                child.Update(gameTime);
+            }
         }
+
     }
 
 
