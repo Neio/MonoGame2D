@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.MacOS", "MonoGame2D\MonoGame2D.MacOS.csproj", "{D639BC40-138E-4EBC-8555-BE745B787C76}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.Example.OSX", "MonoGame2D.Example\MonoGame2D.Example.OSX.csproj", "{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+		AppStore|Mixed Platforms = AppStore|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{D639BC40-138E-4EBC-8555-BE745B787C76}.Release|x86.ActiveCfg = Release|Any CPU
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.AppStore|Mixed Platforms.ActiveCfg = AppStore|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.AppStore|Mixed Platforms.Build.0 = AppStore|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|Any CPU.ActiveCfg = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|Any CPU.Build.0 = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|Mixed Platforms.ActiveCfg = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|Mixed Platforms.Build.0 = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|x86.ActiveCfg = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Debug|x86.Build.0 = Debug|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|Any CPU.ActiveCfg = Release|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|Any CPU.Build.0 = Release|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|Mixed Platforms.ActiveCfg = Release|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|Mixed Platforms.Build.0 = Release|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|x86.ActiveCfg = Release|Mixed Platforms
+		{EF78CE62-71D3-4F3E-9FB8-CFAA25CBA5F2}.Release|x86.Build.0 = Release|Mixed Platforms
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = MonoGame2D.Example\MonoGame2D.Example.OSX.csproj
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -6,8 +6,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using MonoGame2D.Script;
-using OpenTK.Graphics.OpenGL;
-
 namespace MonoGame2D
 {
     public class Node: INode
