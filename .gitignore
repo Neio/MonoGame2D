@@ -3,6 +3,7 @@ bin
 obj
 *.suo
 *.user
+.DS_Store
 
 # mstest test results
 TestResults

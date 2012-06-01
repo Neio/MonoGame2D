@@ -40,6 +40,8 @@ namespace MonoGame2D
             
             Content.RootDirectory = "Content";
             FileSystem.RootDirectory = Content.RootDirectory;
+
+            Window.Title = "MonoGame2D";
         }
 
         /// <summary>
