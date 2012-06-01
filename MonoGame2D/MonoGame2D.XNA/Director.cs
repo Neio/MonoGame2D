@@ -43,7 +43,6 @@ namespace MonoGame2D
             FileSystem.RootDirectory = Content.RootDirectory;
 
             Window.Title = "MonoGame2D";
-            IsFixedTimeStep = false;
         }
 
         /// <summary>

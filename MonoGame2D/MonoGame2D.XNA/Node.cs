@@ -310,15 +310,15 @@ namespace MonoGame2D
         {
             
 
-            //foreach (var child in _children.ToArray())
-            //{
-            //    child.Update(gameTime);
-            //}
+            foreach (var child in _children.ToArray())
+            {
+                child.Update(gameTime);
+            }
         }
 
         protected float GetTimeDelta(GameTime time)
         {
-            return (float)time.ElapsedRealTime.TotalMilliseconds / 1000;
+            return (float)time.ElapsedGameTime.TotalMilliseconds / 1000;
         }
     }
 

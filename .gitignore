@@ -4,6 +4,6 @@ obj
 *.suo
 *.user
 .DS_Store
-
+.cachefile
 # mstest test results
 TestResults

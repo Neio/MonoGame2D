@@ -64,8 +64,10 @@
   <ItemGroup>
     <Compile Include="Animation.cs" />
     <Compile Include="INode.cs" />
+    <Compile Include="IResourceCollection.cs" />
     <Compile Include="ISpriteCollection.cs" />
     <Compile Include="ISpriteEntity.cs" />
+    <Compile Include="Movement.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="NodeShadow.cs" />
     <Compile Include="Particle\BaseParticle.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Particle\Range.cs" />
     <Compile Include="Particle\Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceCollection.cs" />
     <Compile Include="Scene.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="Effects\ScreenSwitch.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="SpriteEntity.cs" />
     <Compile Include="Extention.cs" />
     <Compile Include="SpriteList.cs" />
+    <Compile Include="TextLayout.cs" />
     <Compile Include="Utils\FileSystem.cs" />
     <Compile Include="Utils\GradientColorTable.cs" />
     <Compile Include="Utils\GradientStop.cs" />

@@ -21,7 +21,6 @@ namespace MonoGame2D.Script
 		/// </summary>
 		/// <param name="timeDelta">The time delta in seconds.</param>
 		public void Update(float timeDelta) {
-
 			if (_events.Count > 0) {
 				for (int n = 0; n < _events.Count; ++n) {
 					TimeAction oldAction = _events[n];
