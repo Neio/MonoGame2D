@@ -43,7 +43,7 @@ namespace MonoGame2D
             FileSystem.RootDirectory = Content.RootDirectory;
 
             Window.Title = "MonoGame2D";
-            IsFixedTimeStep = false;
+            IsFixedTimeStep = true;
         }
 
         /// <summary>
@@ -58,7 +58,7 @@ namespace MonoGame2D
             // TODO: use this.Content to load your game content here
             PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
             _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
-                true, pp.BackBufferFormat, DepthFormat.Depth24);
+                true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
             //canvas = new Canvas(graphics.GraphicsDevice);
             canvas = new SpriteBatch( graphics.GraphicsDevice);
             blank = new Texture2D(graphics.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
@@ -78,13 +78,13 @@ namespace MonoGame2D
         {
             
             base.Update(gameTime);
-
-            _script.Update((float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000));
+            float timeDelta = (float)(gameTime.ElapsedGameTime.TotalMilliseconds / 1000);
+            _script.Update(timeDelta);
 
             if (CurrentScene != null)
             {
                 shadow.AddRoot(CurrentScene);
-                shadow.Update(gameTime);
+                shadow.Update(timeDelta);
                 shadow.Clear();
             }
 
@@ -316,13 +316,13 @@ namespace MonoGame2D
             {
                 PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
                 _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
-                    true, pp.BackBufferFormat, DepthFormat.Depth24);
+                    true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
             }
             else
             {
                 PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
                 _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
-                    true, pp.BackBufferFormat, DepthFormat.Depth24);
+                    true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
             }
             //2. Create player targeted this effect...
             _switchEffectPlayer = new SceneSwitchEffectPlayer(switchEffect, timeToSwitch, _effectTarget, _oldEffectTarget);

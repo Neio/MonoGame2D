@@ -316,7 +316,7 @@ namespace MonoGame2D.Effects
                 progress = (0.5f - progress) * 2;
                 //draw fadeout
 
-                spriteBatch.Draw(Context.OldSceneSprite, new Vector2(0, 0), new Color(Color.White * progress, 255));
+                spriteBatch.Draw(Context.OldSceneSprite, new Vector2(0, 0), new Color(progress, progress, progress, 1.0f));
 
                 //canvas.DrawSprite(
                 //    canvas.Region,
@@ -328,7 +328,7 @@ namespace MonoGame2D.Effects
             {
                 progress = (progress - 0.5f) * 2;
                 //draw fade in
-                spriteBatch.Draw(Context.NewSceneSprite, new Vector2(0, 0), new Color(Color.White * progress, 255));
+                spriteBatch.Draw(Context.NewSceneSprite, new Vector2(0, 0), new Color(progress, progress, progress, 1.0f));
                 //canvas.DrawSprite(
                 //    canvas.Region,
                 //    Context.NewSceneSprite,

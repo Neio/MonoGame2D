@@ -5,11 +5,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D", "MonoGame2D\Mo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.Example", "MonoGame2D.Example\MonoGame2D.Example.csproj", "{4A181A37-09A3-4991-BAA9-32D13455B411}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.XNA", "MonoGame2D.XNA\MonoGame2D.XNA.csproj", "{E4B436BA-CB57-4217-B2DE-7E3B7EA81D72}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.XNA", "MonoGame2D\MonoGame2D.XNA.csproj", "{E4B436BA-CB57-4217-B2DE-7E3B7EA81D72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.XNA.Example", "MonoGame2D.XNA.Example\MonoGame2D.XNA.Example\MonoGame2D.XNA.Example.csproj", "{587C8B75-ABE2-4CB4-B91F-865636BFD06D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.XNA.Example", "MonoGame2D.Example\MonoGame2D.XNA.Example.csproj", "{587C8B75-ABE2-4CB4-B91F-865636BFD06D}"
 EndProject
-Project("{96E2B04D-8817-42C6-938A-82C39BA4D311}") = "MonoGame2D.XNA.ExampleContent", "MonoGame2D.XNA.Example\MonoGame2D.XNA.ExampleContent\MonoGame2D.XNA.ExampleContent.contentproj", "{F04FBB60-BFA0-42DB-AB68-DD3C95370B83}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MonoGame2D.XNA.ExampleContent", "MonoGame2D.Example\Content\MonoGame2D.XNA.ExampleContent.contentproj", "{F04FBB60-BFA0-42DB-AB68-DD3C95370B83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

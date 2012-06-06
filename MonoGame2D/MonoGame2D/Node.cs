@@ -258,6 +258,7 @@ namespace MonoGame2D
             translation = Matrix.CreateTranslation(_location.X, _location.Y, 0);
 
             _transform = revOrigin * scale * rotation * translation * origin;
+            //_transform = revOrigin * translation * rotation * scale * origin;
         }
 
         #endregion
@@ -285,7 +286,7 @@ namespace MonoGame2D
 
         public virtual void DrawContent(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         {
-            var matrix = Transform * _transform;
+            var matrix = _transform *Transform  ;
             Draw(graphic, GameTime, ref matrix);
             DrawChildren(graphic, GameTime, ref matrix);
         }
@@ -297,7 +298,8 @@ namespace MonoGame2D
                 child.DrawContent(graphic, GameTime, ref Transform);
             }
 
-            graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,
+            graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearWrap, 
+                DepthStencilState.None, RasterizerState.CullClockwise, null,
                 Transform);
             foreach (var item in sprites)
             {
@@ -306,20 +308,14 @@ namespace MonoGame2D
             graphic.End();
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(float gameTime)
         {
-            
-
-            //foreach (var child in _children.ToArray())
-            //{
-            //    child.Update(gameTime);
-            //}
         }
 
-        protected float GetTimeDelta(GameTime time)
-        {
-            return (float)time.ElapsedRealTime.TotalMilliseconds / 1000;
-        }
+        //protected float GetTimeDelta(GameTime time)
+        //{
+        //    return (float)time.ElapsedRealTime.TotalMilliseconds / 1000;
+        //}
     }
 
 

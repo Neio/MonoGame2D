@@ -99,7 +99,7 @@ namespace MonoGame2D
         /// </summary>
         /// <param name="sprite">The sprite provider.</param>
         public SpriteEntity(Texture2D sprite)
-            : this(Vector2.Zero, Vector2.Zero, 0, Color.TransparentWhite, sprite)
+            : this(Vector2.Zero, Vector2.Zero, 0, Color.White, sprite)
         {
             _originalSize = true;
         }
@@ -111,7 +111,7 @@ namespace MonoGame2D
         /// <param name="xy">The sprite entity location.</param>
         /// <param name="sprite">The sprite provider.</param>
         public SpriteEntity(Vector2 xy, Texture2D sprite)
-            : this(xy, Vector2.Zero, 0, Color.TransparentWhite, sprite)
+            : this(xy, Vector2.Zero, 0, Color.White, sprite)
         {
             _originalSize = true;
         }
@@ -123,7 +123,7 @@ namespace MonoGame2D
         /// <param name="angle">The rotation angle in radians.</param>
         /// <param name="sprite">The sprite provider.</param>
         public SpriteEntity(Vector2 xy, float angle, Texture2D sprite)
-            : this(xy, Vector2.Zero, angle, Color.TransparentWhite, sprite)
+            : this(xy, Vector2.Zero, angle, Color.White, sprite)
         {
             _originalSize = true;
         }
@@ -135,7 +135,7 @@ namespace MonoGame2D
         /// <param name="size">The size of sprite entity.</param>
         /// <param name="sprite">The sprite provider.</param>
         public SpriteEntity(Vector2 xy, Vector2 size, Texture2D sprite)
-            : this(xy, Vector2.Zero, 0, Color.TransparentWhite, sprite)
+            : this(xy, Vector2.Zero, 0, Color.White, sprite)
         {
 
         }

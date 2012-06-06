@@ -53,8 +53,9 @@ namespace MonoGame2D
         /// Invokes update for all items in snapshot
         /// </summary>
         /// <param name="timeDelta">The time delta.</param>
-        public void Update(GameTime gameTime)
+        public void Update(float gameTime)
         {
+           
             foreach (Node element in _elements)
             {
                 element.Update(gameTime);

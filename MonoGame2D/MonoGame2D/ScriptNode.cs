@@ -23,9 +23,9 @@ namespace MonoGame2D
             }
         }
 
-        public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
+        public override void Update(float gameTime)
         {
-            _timeLine.Update(GetTimeDelta(gameTime));
+            _timeLine.Update(gameTime);
         }
     }
 }

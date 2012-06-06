@@ -28,6 +28,11 @@ namespace MonoGame2D.Example
                 eNode.Scale = new Vector2(1.0f  + 0.5f*(float)Math.Sin(Math.PI * 20 * t.Progress));
             });
 
+            var eNode2 = new ExampleNode();
+            var dyNode = new DynamicElement(eNode2);
+            dyNode.Location = new Vector2(500, 300);
+            AddChild(dyNode);
+
             List<Texture2D> list = new List<Texture2D>();
             for (int i = 5; i < 17; i++)
             {

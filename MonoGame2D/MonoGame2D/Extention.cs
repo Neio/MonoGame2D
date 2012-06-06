@@ -15,10 +15,10 @@ namespace MonoGame2D
         }
 
 
-        public static Color Blank(this Color color)
-        {
-            return new Color(Color.White, 255);
-        }
+        //public static Color Blank(this Color color)
+        //{
+        //    return new Color(Color.White, 255);
+        //}
 
     }
 }
