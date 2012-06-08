@@ -70,60 +70,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fish\c0000.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0001.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0002.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0003.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0004.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0005.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0006.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0007.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0008.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0009.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0010.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0011.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0012.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0013.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0014.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0015.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Fish\c0016.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\lava.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <Content Include="Content\Fish\c0000.png" />
+    <Content Include="Content\Fish\c0001.png" />
+    <Content Include="Content\Fish\c0002.png" />
+    <Content Include="Content\Fish\c0003.png" />
+    <Content Include="Content\Fish\c0004.png" />
+    <Content Include="Content\Fish\c0005.png" />
+    <Content Include="Content\Fish\c0006.png" />
+    <Content Include="Content\Fish\c0007.png" />
+    <Content Include="Content\Fish\c0008.png" />
+    <Content Include="Content\Fish\c0009.png" />
+    <Content Include="Content\Fish\c0010.png" />
+    <Content Include="Content\Fish\c0011.png" />
+    <Content Include="Content\Fish\c0012.png" />
+    <Content Include="Content\Fish\c0013.png" />
+    <Content Include="Content\Fish\c0014.png" />
+    <Content Include="Content\Fish\c0015.png" />
+    <Content Include="Content\Fish\c0016.png" />
+    <Content Include="Content\lava.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup />
