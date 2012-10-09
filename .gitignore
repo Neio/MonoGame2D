@@ -7,3 +7,4 @@ obj
 .cachefile
 # mstest test results
 TestResults
+*.cachefile

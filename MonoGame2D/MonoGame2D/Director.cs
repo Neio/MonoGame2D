@@ -39,6 +39,9 @@ namespace MonoGame2D
             graphics.PreferredBackBufferHeight = Height;
             graphics.PreferredBackBufferWidth = Width;
             
+
+            graphics.ApplyChanges();
+
             Content.RootDirectory = "Content";
             FileSystem.RootDirectory = Content.RootDirectory;
 
@@ -63,6 +66,8 @@ namespace MonoGame2D
             canvas = new SpriteBatch( graphics.GraphicsDevice);
             blank = new Texture2D(graphics.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             blank.SetData(new[] { Color.White });
+
+            //Test = Content.Load<Texture2D>("Fish\\f0000");
         }
         Texture2D blank;
         public Texture2D BlankTexture { get {
@@ -99,31 +104,41 @@ namespace MonoGame2D
             }
         }
 
-
+        //Texture2D Test;
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             var device = graphics.GraphicsDevice;
 
-            device.SetRenderTarget(_effectTarget);
-            DrawContent(device, gameTime);
-            device.SetRenderTarget(null);
-
-            //draw domain through effect or some else...
             if (_switchEffectPlayer != null)
             {
-                //device.SetRenderTarget(_effectTarget);
-                _switchEffectPlayer.Draw(canvas);
-                //device.SetRenderTarget(null);
-            }
-            else
-            {
-                canvas.Begin();
-                canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.White);
-                canvas.End();
+                device.SetRenderTarget(_effectTarget);
+                DrawContent(device, gameTime);
+                device.SetRenderTarget(null);
 
+                //draw domain through effect or some else...
+                if (_switchEffectPlayer != null)
+                {
+                    //device.SetRenderTarget(_effectTarget);
+                    _switchEffectPlayer.Draw(canvas);
+                    //device.SetRenderTarget(null);
+                }
+                else
+                {
+                    canvas.Begin();
+                    canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.Blue);
+                    canvas.End();
+
+                }
+            }
+            else {
+                device.SetRenderTarget(null);
+                DrawContent(device, gameTime);
             }
 
+            //canvas.Begin( SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
+            //canvas.Draw(Test, new Vector2(200,200), Color.White);
+            //canvas.End();
         }
 
         /// <summary>
@@ -143,7 +158,10 @@ namespace MonoGame2D
             }
 
             if (scene != null)
+            {
+                device.Clear(Color.Black);
                 scene.DrawContent(canvas, gametime, ref identity);
+            }
 
           
         }

@@ -62,7 +62,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters.cs" />
     <Compile Include="Animation.cs" />
+    <Compile Include="Canvas2D.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="IResourceCollection.cs" />
     <Compile Include="ISpriteCollection.cs" />

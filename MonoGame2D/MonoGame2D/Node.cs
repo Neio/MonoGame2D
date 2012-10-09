@@ -297,10 +297,10 @@ namespace MonoGame2D
             {
                 child.DrawContent(graphic, GameTime, ref Transform);
             }
-
-            graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearWrap, 
-                DepthStencilState.None, RasterizerState.CullClockwise, null,
-                Transform);
+            graphic.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Transform);
+            //graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearWrap, 
+            //    DepthStencilState.None, RasterizerState.CullClockwise, null,
+            //    Transform);
             foreach (var item in sprites)
             {
                 item.Draw(graphic);

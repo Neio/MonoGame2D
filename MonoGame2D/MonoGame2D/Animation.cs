@@ -37,8 +37,7 @@ namespace MonoGame2D
                 //graphic.Begin();
                 graphic.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,Transform);
                   //  Matrix.CreateTranslation(Location.X, Location.Y, 0) * Matrix.CreateRotationZ(Rotation));
-              
-                    graphic.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
+                graphic.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
                 graphic.End();
             }
         }

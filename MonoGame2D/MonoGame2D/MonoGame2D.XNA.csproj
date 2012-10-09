@@ -93,6 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
+    <Compile Include="Canvas2D.cs" />
     <Compile Include="Director.cs" />
     <Compile Include="Effects\ScreenSwitch.cs" />
     <Compile Include="Extention.cs" />
