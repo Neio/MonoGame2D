@@ -145,6 +145,55 @@ namespace MonoGame2D
 	
         }
 
+        #region Rectangle
+
+        /// <summary>
+        /// Draws the filled rect.
+        /// </summary>
+        /// <param name="x">The x of left top rect point.</param>
+        /// <param name="y">The y of left top rect point.</param>
+        /// <param name="width">The width of rect.</param>
+        /// <param name="height">The height of rect.</param>
+        /// <param name="colorTint">The color tint.</param>
+        public void DrawFilledRect(float x, float y, float width, float height, Color colorTint)
+        {
+            DrawFilledRect(new Rect(x, y, x + width, y + height), colorTint);
+        }
+
+        /// <summary>
+        /// Draws the rect.
+        /// </summary>
+        /// <param name="x">The x of left top rect corner.</param>
+        /// <param name="y">The y of left top rect cornder.</param>
+        /// <param name="width">The width of rect.</param>
+        /// <param name="height">The height of rect.</param>
+        /// <param name="colorTint">The color tint.</param>
+        public void DrawRect(float x, float y, float width, float height, Color colorTint)
+        {
+            DrawRect(Rect.FromBox(x, y, width, height), new LineStyle(1), colorTint);
+        }
+
+
+        /// <summary>
+        /// Draws the rect with styled lines.
+        /// </summary>
+        /// <param name="x">The x of left top rect coord.</param>
+        /// <param name="y">The y of left top rect coord.</param>
+        /// <param name="width">The rect width.</param>
+        /// <param name="height">The rect height.</param>
+        /// <param name="style">The style to use for shading lines.</param>
+        /// <param name="colorTint">The color tint.</param>
+        public void DrawRect(float x, float y, float width, float height, LineStyle style, Color colorTint)
+        {
+            DrawRect(Rect.FromBox(x, y, width, height), style, colorTint);
+        }
+
+        /// <summary>
+        /// Draws the rect with styled lines.
+        /// </summary>
+        /// <param name="rect">The rectangle.</param>
+        /// <param name="style">The style to use for shading lines.</param>
+        /// <param name="colorTint">The color tint.</param>
         public void DrawRect(Rect rect, LineStyle style, Color colorTint)
         {
 
@@ -154,6 +203,14 @@ namespace MonoGame2D
             DrawLine(rect.LeftBottom, rect.LeftTop, style, colorTint);
 
         }
+
+        public void DrawFilledRect(Rect rect, Color colorTint)
+        {
+            var patt =LineStroke.Solid.PatternProvider;
+            Batch.Draw(patt, rect.ToRectangle(), patt.Bounds, colorTint);
+        }
+        #endregion
+
 
         public void DrawLine(Vector2 start, Vector2 end, Color colorTint) {
             DrawLine(start, end, new LineStyle(1), colorTint);

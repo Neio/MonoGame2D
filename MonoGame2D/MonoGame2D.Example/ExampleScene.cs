@@ -61,7 +61,14 @@ namespace MonoGame2D.Example
         {
             using (canvas <= new Translation(100, 100) <= new Rotation(delta))
             {
+                
                 canvas.DrawLine(new Vector2(0, 0), new Vector2(100, 0), new LineStyle(2, LineStroke.Smooth), Color.Blue);
+            }
+
+            using (canvas <= new Translation(500, 100) <= new Rotation(delta))
+            {
+                canvas.DrawFilledRect(new Rect(-100, -100, 100, 100), Color.Yellow);
+                //canvas.DrawRect(new Rect(0, 0, 100, 100), new LineStyle(1), Color.Yellow);
             }
         }
 
