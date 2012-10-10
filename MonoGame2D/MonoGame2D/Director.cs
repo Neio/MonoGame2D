@@ -32,8 +32,8 @@ namespace MonoGame2D
 
         //private GraphSnapshot _graphSnapshot = new GraphSnapshot();
         private Stack<Scene> _sceneStack = new Stack<Scene>();
-        private List<Scene> _sceneList = new List<Scene>();
-        private List<Scene> _modalSceneList = new List<Scene>();
+        //private List<Scene> _sceneList = new List<Scene>();
+        //private List<Scene> _modalSceneList = new List<Scene>();
 
         TimeLine _script = new TimeLine();
         ContentManager SystemResource;
@@ -51,6 +51,7 @@ namespace MonoGame2D
 
             graphics.ApplyChanges();
             
+			//new ResourceManager("MonoGame2D", this.GetType().Assembly);
             SystemResource = new ResourceContentManager(this.Services, SystemResources.ResourceManager);
             Content.RootDirectory = "Content";
             FileSystem.RootDirectory = Content.RootDirectory;

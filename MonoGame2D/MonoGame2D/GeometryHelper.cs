@@ -77,8 +77,8 @@ namespace MonoGame2D
         /// </returns>
         public static bool PointInLine(Vector2 point, Vector2[] vertices, float accuracy)
         {
-            if (point == null || (vertices == null || vertices.Length < 2))
-                return false;
+            //if (point == null || (vertices == null || vertices.Length < 2))
+             //   return false;
 
             for (int i = 0; i < vertices.Length - 1; i++)
             {

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -51,6 +51,7 @@
     <Reference Include="Tao.Sdl">
       <HintPath>..\..\Lib\MacOS\Tao.Sdl.dll</HintPath>
     </Reference>
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animation.cs" />
@@ -93,6 +94,27 @@
     <Compile Include="Utils\RandomList.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
     <Compile Include="Utils\ResourceFileInfo.cs" />
+    <Compile Include="PresetNodes\VideoNode.cs" />
+    <Compile Include="Canvas\Canvas2D.cs" />
+    <Compile Include="Canvas\Canvas2DScope.cs" />
+    <Compile Include="Canvas\ITransform.cs" />
+    <Compile Include="Canvas\LineStroke.cs" />
+    <Compile Include="Canvas\LineStyle.cs" />
+    <Compile Include="Canvas\Rect.cs" />
+    <Compile Include="Canvas\Rotation.cs" />
+    <Compile Include="Canvas\Scaling.cs" />
+    <Compile Include="Canvas\StateScope.cs" />
+    <Compile Include="Canvas\Translation.cs" />
+    <Compile Include="Adapters.cs" />
+    <Compile Include="Blending.cs" />
+    <Compile Include="FontOptions.cs" />
+    <Compile Include="GameFont.cs" />
+    <Compile Include="GeometryHelper.cs" />
+    <Compile Include="IResourceCollection.cs" />
+    <Compile Include="ResourceCollection.cs" />
+    <Compile Include="Movement.cs" />
+    <Compile Include="SystemResources.Designer.cs" />
+    <Compile Include="TextLayout.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -102,4 +124,8 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <ItemGroup>
+    <EmbeddedResource Include="Default.xnb" />
+    <EmbeddedResource Include="SystemResources.resx" />
+  </ItemGroup>
 </Project>

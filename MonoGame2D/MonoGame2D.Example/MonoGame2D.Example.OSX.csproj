@@ -107,13 +107,6 @@
     <Content Include="Content\Fish\c0007.png" />
     <Content Include="Content\Fish\c0008.png" />
     <Content Include="Content\Fish\c0009.png" />
-    <Content Include="Content\Fish\c0010.png" />
-    <Content Include="Content\Fish\c0011.png" />
-    <Content Include="Content\Fish\c0012.png" />
-    <Content Include="Content\Fish\c0013.png" />
-    <Content Include="Content\Fish\c0014.png" />
-    <Content Include="Content\Fish\c0015.png" />
-    <Content Include="Content\Fish\c0016.png" />
     <Content Include="Content\lava.png" />
   </ItemGroup>
   <ItemGroup>
