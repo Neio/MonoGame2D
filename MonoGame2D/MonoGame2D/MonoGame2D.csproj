@@ -52,6 +52,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -67,8 +68,12 @@
     <Compile Include="Blending.cs" />
     <Compile Include="Canvas\Canvas2D.cs" />
     <Compile Include="Canvas\Canvas2DScope.cs" />
+    <Compile Include="Canvas\LineStroke.cs" />
+    <Compile Include="Canvas\LineStyle.cs" />
+    <Compile Include="Canvas\Rect.cs" />
     <Compile Include="Canvas\Scaling.cs" />
     <Compile Include="FontOptions.cs" />
+    <Compile Include="GeometryHelper.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="IResourceCollection.cs" />
     <Compile Include="ISpriteCollection.cs" />

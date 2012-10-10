@@ -11,5 +11,9 @@ namespace MonoGame2D
         {
             return Vector2.Dot(v, x);
         }
+
+        public static Vector2 Half(this Vector2 v) {
+            return new Vector2(v.X * 0.5f, v.Y * 0.5f);
+        }
     }
 }

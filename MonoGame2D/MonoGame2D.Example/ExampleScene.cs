@@ -59,10 +59,9 @@ namespace MonoGame2D.Example
         Animation fish;
         public override void DrawForeground(Canvas2D canvas)
         {
-            base.DrawForeground(canvas);
             using (canvas <= new Translation(100, 100) <= new Rotation(delta))
             {
-                canvas.DrawLine(new Vector2(0, 0), new Vector2(100, 100), Color.Blue);
+                canvas.DrawLine(new Vector2(0, 0), new Vector2(100, 0), new LineStyle(2, LineStroke.Smooth), Color.Blue);
             }
         }
 

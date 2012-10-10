@@ -62,17 +62,13 @@ namespace MonoGame2D
             PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
             _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
                 true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
-            //canvas = new Canvas(graphics.GraphicsDevice);
-            canvas = new SpriteBatch( graphics.GraphicsDevice);
-            blank = new Texture2D(graphics.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
-            blank.SetData(new[] { Color.White });
 
-            //Test = Content.Load<Texture2D>("Fish\\f0000");
+            canvas = new SpriteBatch( graphics.GraphicsDevice);
+
+            LineStroke.Init(graphics.GraphicsDevice);
+
         }
-        Texture2D blank;
-        public Texture2D BlankTexture { get {
-            return blank;
-        } }
+        
 
         protected override void UnloadContent()
         {
@@ -160,7 +156,7 @@ namespace MonoGame2D
             if (scene != null)
             {
                 device.Clear(Color.Black);
-                using (var drawer = new Canvas2D(canvas, gametime, ref identity, blank))
+                using (var drawer = new Canvas2D(canvas, gametime, ref identity))
                 {
                     scene.DrawContent(drawer);
                 }

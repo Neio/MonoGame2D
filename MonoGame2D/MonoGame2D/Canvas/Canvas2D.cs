@@ -17,16 +17,14 @@ namespace MonoGame2D
         private int _transformStackSize = 0;
         private BlendState _blending;
         private bool _begined ;
-        internal Texture2D BlankDot;
 
-        public Canvas2D(Microsoft.Xna.Framework.Graphics.SpriteBatch Batch, GameTime GameTime, ref Matrix Matrix, Texture2D blankDot)
+        public Canvas2D(Microsoft.Xna.Framework.Graphics.SpriteBatch Batch, GameTime GameTime, ref Matrix Matrix)
         {
             this.Batch = Batch;
             this.Matrix = Matrix;
             this.Time = GameTime;
             _blending = BlendState.AlphaBlend;
             _begined = false;
-            BlankDot = blankDot;
             Begin();
         }
 
@@ -147,9 +145,23 @@ namespace MonoGame2D
 	
         }
 
-        public void DrawLine(Vector2 start, Vector2 end, Color colorTint)
+        public void DrawRect(Rect rect, LineStyle style, Color colorTint)
         {
-            DrawLine(Batch, BlankDot, 1, colorTint, start, end);
+
+            DrawLine(rect.LeftTop, rect.RightTop, style, colorTint);
+            DrawLine(rect.RightTop, rect.RightBottom, style, colorTint);
+            DrawLine(rect.RightBottom, rect.LeftBottom, style, colorTint);
+            DrawLine(rect.LeftBottom, rect.LeftTop, style, colorTint);
+
+        }
+
+        public void DrawLine(Vector2 start, Vector2 end, Color colorTint) {
+            DrawLine(start, end, new LineStyle(1), colorTint);
+        }
+
+        public void DrawLine(Vector2 start, Vector2 end, LineStyle style, Color colorTint)
+        {
+            DrawLine(Batch, style.Stroke.PatternProvider, style.Width, colorTint, start, end);
         }
 
         void DrawLine(SpriteBatch batch, Texture2D blank,
@@ -159,7 +171,7 @@ namespace MonoGame2D
             float length = Vector2.Distance(point1, point2);
 
             batch.Draw(blank, point1, null, color,
-                       angle, Vector2.Zero, new Vector2(length, width),
+                       angle, Vector2.Zero, new Vector2(length, width / blank.Height),
                        SpriteEffects.None, 0);
         }
 
