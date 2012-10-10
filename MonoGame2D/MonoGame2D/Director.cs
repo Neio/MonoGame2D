@@ -160,7 +160,7 @@ namespace MonoGame2D
             if (scene != null)
             {
                 device.Clear(Color.Black);
-                using (var drawer = new Canvas2D(canvas, gametime, ref identity))
+                using (var drawer = new Canvas2D(canvas, gametime, ref identity, blank))
                 {
                     scene.DrawContent(drawer);
                 }

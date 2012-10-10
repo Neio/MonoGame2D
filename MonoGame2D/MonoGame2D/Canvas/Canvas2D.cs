@@ -17,14 +17,16 @@ namespace MonoGame2D
         private int _transformStackSize = 0;
         private BlendState _blending;
         private bool _begined ;
+        internal Texture2D BlankDot;
 
-        public Canvas2D(Microsoft.Xna.Framework.Graphics.SpriteBatch Batch, GameTime GameTime, ref Matrix Matrix)
+        public Canvas2D(Microsoft.Xna.Framework.Graphics.SpriteBatch Batch, GameTime GameTime, ref Matrix Matrix, Texture2D blankDot)
         {
             this.Batch = Batch;
             this.Matrix = Matrix;
             this.Time = GameTime;
             _blending = BlendState.AlphaBlend;
             _begined = false;
+            BlankDot = blankDot;
             Begin();
         }
 
@@ -141,6 +143,22 @@ namespace MonoGame2D
             Batch.DrawString(font, text, location, colorTint);
 
 	
+        }
+
+        public void DrawLine(Vector2 start, Vector2 end, Color colorTint)
+        {
+            DrawLine(Batch, BlankDot, 1, colorTint, start, end);
+        }
+
+        void DrawLine(SpriteBatch batch, Texture2D blank,
+              float width, Color color, Vector2 point1, Vector2 point2)
+        {
+            float angle = (float)Math.Atan2(point2.Y - point1.Y, point2.X - point1.X);
+            float length = Vector2.Distance(point1, point2);
+
+            batch.Draw(blank, point1, null, color,
+                       angle, Vector2.Zero, new Vector2(length, width),
+                       SpriteEffects.None, 0);
         }
 
         public void Clear(Color color)
