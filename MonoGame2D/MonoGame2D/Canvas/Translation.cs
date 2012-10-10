@@ -10,6 +10,11 @@ namespace MonoGame2D
     {
         public Vector2 Translate;
 
+        public Translation(float x, float y)
+        {
+            Translate = new Vector2(x, y);
+        }
+
         public Translation(Vector2 dx)
         {
             Translate = dx;

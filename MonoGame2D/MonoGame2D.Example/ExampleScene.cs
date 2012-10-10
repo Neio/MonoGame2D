@@ -50,32 +50,29 @@ namespace MonoGame2D.Example
             }
 
 
-            var fish = new Animation(new SpriteList(list), true, 30);
+            fish = new Animation(new SpriteList(list), true, 30);
             AddChild(fish);
             fish.Location = new Vector2(100, 100);
+            
         }
 
-
-        public override void Draw(Canvas2D canvas)
+        Animation fish;
+        public override void DrawForeground(Canvas2D canvas)
         {
-            base.Draw(canvas);
-            using (canvas <= new Translation(new Vector2(300, 300)))
+            base.DrawForeground(canvas);
+            using (canvas <= new Translation(100, 100) <= new Rotation(delta))
             {
-                canvas.DrawLine(new Vector2(100, 100), new Vector2(200, 300), Color.Blue);
+                canvas.DrawLine(new Vector2(0, 0), new Vector2(100, 100), Color.Blue);
             }
         }
 
-        //public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch graphic, Microsoft.Xna.Framework.GameTime GameTime, ref Microsoft.Xna.Framework.Matrix Transform)
-        //{
-        //    graphic.GraphicsDevice.Clear(Color.Black);
-        //    base.Draw(graphic, GameTime, ref Transform);
-        //}
-
-        //protected override void Draw(Canvas2D canvas)
-        //{
-        //    canvas.Clear(Color.Black);
-        //    base.Draw(canvas);
-        //}
+        float delta = 0;
+        public override void Update(float gameTime)
+        {
+            base.Update(gameTime);
+            delta += gameTime;
+            fish.Rotation = delta;
+        }
 
     }
 }

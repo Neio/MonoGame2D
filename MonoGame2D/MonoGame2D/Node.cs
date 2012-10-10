@@ -284,12 +284,18 @@ namespace MonoGame2D
             
         }
 
+        public virtual void DrawForeground(Canvas2D canvas)
+        {
+
+        }
+
         public virtual void DrawContent(Canvas2D canvas)//SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         {
                 canvas.PushTransform();
                 canvas.ApplyTransformBefore(ref _transform);
                 Draw(canvas);
                 DrawChildren(canvas);
+                DrawForeground(canvas);
                 canvas.PopTransform();
             
             

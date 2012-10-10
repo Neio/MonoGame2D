@@ -38,7 +38,8 @@ namespace MonoGame2D
                // canvas.Begin();
                 //canvas.Batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, canvas.Matrix);
                   //  Matrix.CreateTranslation(Location.X, Location.Y, 0) * Matrix.CreateRotationZ(Rotation));
-                canvas.Batch.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
+                //canvas.Batch.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
+                canvas.DrawSprite(0, 0, _anim.ToSprite(), Color.White);
                 //canvas.Batch.End();
                 //canvas.End();
             }

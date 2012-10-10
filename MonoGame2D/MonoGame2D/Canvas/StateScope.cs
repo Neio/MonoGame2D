@@ -63,7 +63,7 @@ namespace MonoGame2D
         public static StateScope operator <=(StateScope canvas, ITransform tran)
         {
 
-            Matrix max = canvas.ReferredCanvas.Matrix * tran.Matrix;
+            Matrix max = tran.Matrix;
             return new TransformScope(canvas, ref max, false);// new Canvas2D(canvas.Batch, ref max);
         }
 
