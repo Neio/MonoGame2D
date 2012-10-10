@@ -1,6 +1,7 @@
 MonoGame2D
 ==========
 
-2D Framework based on MonoGame
+2D Framework based on MonoGame/XNA
 
-Since MonoGame is still in development, MonoGame2D will stop for a period
+I will use XNA to continue this project.
+

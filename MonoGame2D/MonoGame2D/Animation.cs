@@ -30,15 +30,17 @@ namespace MonoGame2D
 
         protected SimpleSpriteAnimation _anim = null;
 
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
+        public override void Draw(Canvas2D canvas)
         {
             if (_anim != null)
             {
                 //graphic.Begin();
-                graphic.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null,Transform);
+               // canvas.Begin();
+                //canvas.Batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, canvas.Matrix);
                   //  Matrix.CreateTranslation(Location.X, Location.Y, 0) * Matrix.CreateRotationZ(Rotation));
-                graphic.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
-                graphic.End();
+                canvas.Batch.Draw(_anim.ToSprite(), new Vector2(0, 0), Color.White);
+                //canvas.Batch.End();
+                //canvas.End();
             }
         }
 

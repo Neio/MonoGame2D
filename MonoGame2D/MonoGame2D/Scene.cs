@@ -16,16 +16,7 @@ namespace MonoGame2D
 
        // protected Color BackgroundColor { get; set; }
 
-        protected virtual void Draw(Canvas2D canvas)
-        {
-            //canvas.Batch.GraphicsDevice.Clear(BackgroundColor);
-        }
-
-        public override void Draw(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
-        {
-            base.Draw(graphic, GameTime, ref Transform);
-            Draw(new Canvas2D(graphic, ref Transform));
-        }
+       
 
         public virtual void Activate()
         { }

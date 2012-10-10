@@ -37,12 +37,12 @@ namespace MonoGame2D
 
         List<Sprite> sprites = new List<Sprite>();
 
-        public void AddSprite(Sprite sprite)
+        public void AddChild(Sprite sprite)
         {
             sprites.Add(sprite);
         }
 
-        public void RemoveSprite(Sprite sprite)
+        public void RemoveChild(Sprite sprite)
         {
             sprites.Remove(sprite);
         }
@@ -279,33 +279,40 @@ namespace MonoGame2D
             
         }
 
-        public virtual void Draw(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
+        public virtual void Draw(Canvas2D canvas)
         { 
             
         }
 
-        public virtual void DrawContent(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
+        public virtual void DrawContent(Canvas2D canvas)//SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
         {
-            var matrix = _transform *Transform  ;
-            Draw(graphic, GameTime, ref matrix);
-            DrawChildren(graphic, GameTime, ref matrix);
+                canvas.PushTransform();
+                canvas.ApplyTransformBefore(ref _transform);
+                Draw(canvas);
+                DrawChildren(canvas);
+                canvas.PopTransform();
+            
+            
         }
 
-        public virtual void DrawChildren(SpriteBatch graphic, GameTime GameTime, ref Matrix Transform)
+        public virtual void DrawChildren(Canvas2D canvas)
         {
             foreach (var child in _children)
             {
-                child.DrawContent(graphic, GameTime, ref Transform);
+                child.DrawContent(canvas);
             }
-            graphic.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, Transform);
+
+           // canvas.Begin();
+            //canvas.Batch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, RasterizerState.CullCounterClockwise, null, canvas.Matrix);
             //graphic.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearWrap, 
             //    DepthStencilState.None, RasterizerState.CullClockwise, null,
             //    Transform);
             foreach (var item in sprites)
             {
-                item.Draw(graphic);
+                item.Draw(canvas.Batch);
             }
-            graphic.End();
+            //canvas.End();
+            //canvas.Batch.End();
         }
 
         public virtual void Update(float gameTime)

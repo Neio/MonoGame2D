@@ -18,7 +18,7 @@ namespace MonoGame2D.Example
             if (!_load )
             {
                 var sp = new Sprite(Context.Load<Texture2D>("lava"));
-                AddSprite(sp);
+                AddChild(sp);
                 _load = true;
             }
         }

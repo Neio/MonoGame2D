@@ -55,10 +55,6 @@ namespace MonoGame2D.Example
             fish.Location = new Vector2(100, 100);
         }
 
-        protected override void Draw(Canvas2D canvas)
-        {
-            base.Draw(canvas);
-        }
 
         //public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch graphic, Microsoft.Xna.Framework.GameTime GameTime, ref Microsoft.Xna.Framework.Matrix Transform)
         //{
