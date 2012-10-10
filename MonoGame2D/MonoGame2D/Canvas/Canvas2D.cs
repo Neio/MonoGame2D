@@ -58,6 +58,8 @@ namespace MonoGame2D
                 End();
                 Begin();
             }
+            else
+                Begin();
         }
 
         /// <summary>

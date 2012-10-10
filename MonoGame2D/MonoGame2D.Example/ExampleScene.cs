@@ -59,7 +59,10 @@ namespace MonoGame2D.Example
         public override void Draw(Canvas2D canvas)
         {
             base.Draw(canvas);
-            canvas.DrawLine(new Vector2(100, 100), new Vector2(200, 300), Color.Blue);
+            using (canvas <= new Translation(new Vector2(300, 300)))
+            {
+                canvas.DrawLine(new Vector2(100, 100), new Vector2(200, 300), Color.Blue);
+            }
         }
 
         //public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch graphic, Microsoft.Xna.Framework.GameTime GameTime, ref Microsoft.Xna.Framework.Matrix Transform)
