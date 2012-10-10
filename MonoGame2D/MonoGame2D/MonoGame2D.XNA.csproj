@@ -7,8 +7,8 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MonoGame2D.XNA</RootNamespace>
-    <AssemblyName>MonoGame2D.XNA</AssemblyName>
+    <RootNamespace>MonoGame2D</RootNamespace>
+    <AssemblyName>MonoGame2D</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
@@ -33,7 +33,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\XNA\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -110,6 +110,7 @@
     <Compile Include="Effects\ScreenSwitch.cs" />
     <Compile Include="Extention.cs" />
     <Compile Include="FontOptions.cs" />
+    <Compile Include="GameFont.cs" />
     <Compile Include="GeometryHelper.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="IResourceCollection.cs" />
@@ -143,6 +144,7 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="SpriteEntity.cs" />
     <Compile Include="SpriteList.cs" />
+    <Compile Include="SystemResources.Designer.cs" />
     <Compile Include="TextLayout.cs" />
     <Compile Include="Utils\BundleDescriptionFormatException.cs" />
     <Compile Include="Utils\FileSystem.cs" />
@@ -153,6 +155,12 @@
     <Compile Include="Utils\RandomList.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
     <Compile Include="Utils\ResourceFileInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SystemResources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Default.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

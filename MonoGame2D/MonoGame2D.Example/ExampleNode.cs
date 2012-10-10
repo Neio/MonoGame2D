@@ -5,14 +5,15 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using MonoGame2D.Script;
+using Microsoft.Xna.Framework.Content;
 
 namespace MonoGame2D.Example
 {
     class ExampleNode : ScriptNode
     {
         bool _load=false;
-
-        public override void LoadContents(Microsoft.Xna.Framework.Content.ContentManager Context)
+        
+        public override void LoadContents(ContentManager Context)
         {
             base.LoadContents(Context);
             if (!_load )

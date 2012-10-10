@@ -6,12 +6,21 @@ using MonoGame2D.Effects;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using MonoGame2D.Script;
+using Microsoft.Xna.Framework.Content;
+using System.Resources;
 
 namespace MonoGame2D
 {
     public class Director : Game
     {
-        
+
+        private static Director _instance = null;
+        public static Director Instance {
+            get {
+                return _instance;
+            }
+        }
+
         NodeShadow shadow = new NodeShadow();
         GraphicsDeviceManager graphics;
 
@@ -27,7 +36,7 @@ namespace MonoGame2D
         private List<Scene> _modalSceneList = new List<Scene>();
 
         TimeLine _script = new TimeLine();
-
+        ContentManager SystemResource;
 
         #region Game
 
@@ -41,13 +50,26 @@ namespace MonoGame2D
             
 
             graphics.ApplyChanges();
-
+            
+            SystemResource = new ResourceContentManager(this.Services, SystemResources.ResourceManager);
             Content.RootDirectory = "Content";
             FileSystem.RootDirectory = Content.RootDirectory;
 
             Window.Title = "MonoGame2D";
             IsFixedTimeStep = true;
+            _instance = this;
         }
+
+        public void SetResourceContentManager(ResourceManager resourceManager)
+        {
+            Content = new ResourceContentManager(this.Services, SystemResources.ResourceManager);
+        }
+
+        public void SetContentManager(String RootDirectory)
+        {
+            Content = new ContentManager(this.Services, RootDirectory);
+        }
+
 
         /// <summary>
         /// Game script
@@ -66,6 +88,7 @@ namespace MonoGame2D
             canvas = new SpriteBatch( graphics.GraphicsDevice);
 
             LineStroke.Init(graphics.GraphicsDevice);
+            GameFont.Init(SystemResource);
 
         }
         

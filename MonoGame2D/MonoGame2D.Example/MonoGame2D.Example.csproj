@@ -26,7 +26,7 @@
     <PlatformTarget>x86</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\GL\</OutputPath>
     <DefineConstants>TRACE;WINDOWS</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -80,13 +80,6 @@
     <Content Include="Content\Fish\c0007.png" />
     <Content Include="Content\Fish\c0008.png" />
     <Content Include="Content\Fish\c0009.png" />
-    <Content Include="Content\Fish\c0010.png" />
-    <Content Include="Content\Fish\c0011.png" />
-    <Content Include="Content\Fish\c0012.png" />
-    <Content Include="Content\Fish\c0013.png" />
-    <Content Include="Content\Fish\c0014.png" />
-    <Content Include="Content\Fish\c0015.png" />
-    <Content Include="Content\Fish\c0016.png" />
     <Content Include="Content\lava.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>

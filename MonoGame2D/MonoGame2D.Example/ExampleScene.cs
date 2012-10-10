@@ -59,6 +59,8 @@ namespace MonoGame2D.Example
         Animation fish;
         public override void DrawForeground(Canvas2D canvas)
         {
+            canvas.DrawText(GameFont.Default, new Vector2(20, 20), "Hello", Color.Yellow);
+
             using (canvas <= new Translation(100, 100) <= new Rotation(delta))
             {
                 
@@ -69,6 +71,7 @@ namespace MonoGame2D.Example
             {
                 canvas.DrawFilledRect(new Rect(-100, -100, 100, 100), Color.Yellow);
                 //canvas.DrawRect(new Rect(0, 0, 100, 100), new LineStyle(1), Color.Yellow);
+                
             }
         }
 

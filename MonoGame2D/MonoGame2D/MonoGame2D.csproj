@@ -26,7 +26,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\Release\GL\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -73,6 +73,7 @@
     <Compile Include="Canvas\Rect.cs" />
     <Compile Include="Canvas\Scaling.cs" />
     <Compile Include="FontOptions.cs" />
+    <Compile Include="GameFont.cs" />
     <Compile Include="GeometryHelper.cs" />
     <Compile Include="INode.cs" />
     <Compile Include="IResourceCollection.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Particle\ParticleSystem.cs" />
     <Compile Include="Particle\Range.cs" />
     <Compile Include="Particle\Types.cs" />
+    <Compile Include="PresetNodes\VideoNode.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceCollection.cs" />
     <Compile Include="Canvas\Rotation.cs" />
@@ -112,6 +114,11 @@
     <Compile Include="Extention.cs" />
     <Compile Include="SpriteList.cs" />
     <Compile Include="Canvas\StateScope.cs" />
+    <Compile Include="SystemResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SystemResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="TextLayout.cs" />
     <Compile Include="Canvas\Translation.cs" />
     <Compile Include="Utils\FileSystem.cs" />
@@ -121,6 +128,15 @@
     <Compile Include="Utils\RandomList.cs" />
     <Compile Include="Utils\RandomUtils.cs" />
     <Compile Include="Utils\ResourceFileInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="SystemResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>SystemResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Default.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

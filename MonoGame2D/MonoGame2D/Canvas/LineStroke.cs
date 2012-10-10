@@ -15,7 +15,7 @@ namespace MonoGame2D
     public class LineStroke
     {
 
-        public static void Init(GraphicsDevice device)
+        internal static void Init(GraphicsDevice device)
         {
             {
                 Texture2D blank = new Texture2D(device,1, 1, false, SurfaceFormat.Color);

@@ -145,6 +145,16 @@ namespace MonoGame2D
 	
         }
 
+        public void DrawText(SpriteFont font, Vector2 location, string text, Color colorTint)
+        {
+            if (null == font) throw new ArgumentNullException("font");
+            if (null == text) throw new ArgumentNullException("text");
+
+            Batch.DrawString(font, text, location, colorTint);
+
+
+        }
+
         #region Rectangle
 
         /// <summary>
