@@ -136,19 +136,19 @@ namespace MonoGame2D
                 device.SetRenderTarget(null);
 
                 //draw domain through effect or some else...
-                if (_switchEffectPlayer != null)
-                {
+                //if (_switchEffectPlayer != null)
+                //{
                     //device.SetRenderTarget(_effectTarget);
                     _switchEffectPlayer.Draw(canvas);
                     //device.SetRenderTarget(null);
-                }
-                else
-                {
-                    canvas.Begin();
-                    canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.Blue);
-                    canvas.End();
+                //}
+                //else
+                //{
+                //    canvas.Begin();
+                //    canvas.Draw(_effectTarget, _effectTarget.Bounds, Color.Blue);
+                //    canvas.End();
 
-                }
+                //}
             }
             else {
                 device.SetRenderTarget(null);
