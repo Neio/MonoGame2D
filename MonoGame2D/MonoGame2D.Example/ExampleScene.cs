@@ -11,9 +11,15 @@ namespace MonoGame2D.Example
     class ExampleScene : Scene
     {
         public ExampleScene() {
-
-            UseEmbeddedResouce = true;
-            resourceManager = ExampleSceneResource.ResourceManager;
+#if WINDOWS
+		   UseEmbeddedResouce = true;
+           resourceManager = ExampleSceneResource.ResourceManager;
+#else
+			this.RootDirectory = "Resources";
+			UseEmbeddedResouce = false;
+           //UseEmbeddedResouce = true;
+           //resourceManager = ExampleSceneResource.ResourceManager;
+#endif
 
         }
 
@@ -25,7 +31,7 @@ namespace MonoGame2D.Example
          
 
 
-            var eNode = new ExampleNode();
+            var eNode = new ExampleNode("teddy_bear_toy");
 
             AddChild(eNode);
 
@@ -36,9 +42,10 @@ namespace MonoGame2D.Example
                 eNode.Scale = new Vector2(1.0f + 0.5f * (float)Math.Sin(Math.PI * 20 * t.Progress));
             });
 
-            var eNode2 = new ExampleNode();
+            var eNode2 = new ExampleNode("mouse");
             var dyNode = new DynamicElement(eNode2);
             dyNode.Location = new Vector2(500, 300);
+			dyNode.Scale = new Vector2(0.4f);
             AddChild(dyNode);
 
             List<Texture2D> list = new List<Texture2D>();
@@ -65,7 +72,7 @@ namespace MonoGame2D.Example
         {
             canvas.DrawText(GameFont.Default, new Vector2(20, 20), "Hello", Color.Yellow);
 
-            using (canvas <= new Translation(100, 100) <= new Rotation(delta))
+            using (canvas <= new Translation(250, 100) <= new Rotation(delta))
             {
                 
                 canvas.DrawLine(new Vector2(0, 0), new Vector2(100, 0), new LineStyle(2, LineStroke.Smooth), Color.Blue);

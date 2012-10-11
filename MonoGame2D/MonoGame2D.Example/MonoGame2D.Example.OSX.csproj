@@ -86,6 +86,9 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="ExampleSceneResource.resources" />
+    <None Include="Resources\mouse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Mono\MonoMac\v0.0\Mono.MonoMac.targets" />
@@ -99,33 +102,45 @@
     <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\Fish\c0000.png" />
-    <Content Include="Content\Fish\c0001.png" />
-    <Content Include="Content\Fish\c0002.png" />
-    <Content Include="Content\Fish\c0003.png" />
-    <Content Include="Content\Fish\c0004.png" />
-    <Content Include="Content\Fish\c0005.png" />
-    <Content Include="Content\Fish\c0006.png" />
-    <Content Include="Content\Fish\c0007.png" />
-    <Content Include="Content\Fish\c0008.png" />
-    <Content Include="Content\Fish\c0009.png" />
-    <Content Include="Content\lava.png" />
-  </ItemGroup>
-  <ItemGroup>
     <InterfaceDefinition Include="MainWindow.xib" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ExampleSceneResource.resx" />
-    <EmbeddedResource Include="Resources\c0000.xnb" />
-    <EmbeddedResource Include="Resources\c0001.xnb" />
-    <EmbeddedResource Include="Resources\c0002.xnb" />
-    <EmbeddedResource Include="Resources\c0003.xnb" />
-    <EmbeddedResource Include="Resources\c0004.xnb" />
-    <EmbeddedResource Include="Resources\c0005.xnb" />
-    <EmbeddedResource Include="Resources\c0006.xnb" />
-    <EmbeddedResource Include="Resources\c0007.xnb" />
-    <EmbeddedResource Include="Resources\c0008.xnb" />
-    <EmbeddedResource Include="Resources\c0009.xnb" />
-    <EmbeddedResource Include="Resources\lava.xnb" />
+    <EmbeddedResource Include="Resources\c0000.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0001.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0002.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0003.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0004.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0005.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0006.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0007.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0008.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\c0009.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\lava.xnb">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\teddy_bear_toy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

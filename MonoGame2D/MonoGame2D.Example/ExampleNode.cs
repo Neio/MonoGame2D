@@ -12,13 +12,19 @@ namespace MonoGame2D.Example
     class ExampleNode : ScriptNode
     {
         bool _load=false;
+		string _asset;
+		public ExampleNode(String AssetName)
+		{
+			_asset = AssetName;
+
+		}
         
         public override void LoadContents(ContentManager Context)
         {
             base.LoadContents(Context);
             if (!_load )
             {
-                var sp = new Sprite(Context.Load<Texture2D>("lava"));
+                var sp = new Sprite(Context.Load<Texture2D>(_asset));
                 AddChild(sp);
                 _load = true;
             }
