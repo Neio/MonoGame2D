@@ -35,6 +35,9 @@ namespace MonoGame2D
         //private List<Scene> _sceneList = new List<Scene>();
         //private List<Scene> _modalSceneList = new List<Scene>();
 
+        delegate void InvokeMethod();
+        InvokeMethod waitFrame;
+
         TimeLine _script = new TimeLine();
         ContentManager SystemResource;
 
@@ -51,7 +54,6 @@ namespace MonoGame2D
 
             graphics.ApplyChanges();
             
-			//new ResourceManager("MonoGame2D", this.GetType().Assembly);
             SystemResource = new ResourceContentManager(this.Services, SystemResources.ResourceManager);
             Content.RootDirectory = "Content";
             FileSystem.RootDirectory = Content.RootDirectory;
@@ -124,11 +126,21 @@ namespace MonoGame2D
             }
         }
 
-        //Texture2D Test;
         protected override void Draw(GameTime gameTime)
         {
             base.Draw(gameTime);
             var device = graphics.GraphicsDevice;
+
+            if (waitFrame != null)
+            {
+                device.SetRenderTarget(_effectTarget);
+                DrawContent(device, gameTime);
+                device.SetRenderTarget(null);
+
+                waitFrame();
+
+                waitFrame = null;
+            }
 
             if (_switchEffectPlayer != null)
             {
@@ -156,9 +168,6 @@ namespace MonoGame2D
                 DrawContent(device, gameTime);
             }
 
-            //canvas.Begin( SpriteSortMode.FrontToBack, BlendState.AlphaBlend);
-            //canvas.Draw(Test, new Vector2(200,200), Color.White);
-            //canvas.End();
         }
 
         /// <summary>
@@ -219,6 +228,7 @@ namespace MonoGame2D
             set { SetScene(value); }
         }
 
+
         /// <summary>
         /// Gets the size of the domain stack.
         /// </summary>
@@ -246,25 +256,29 @@ namespace MonoGame2D
         public void SetScene(Scene scene, ISceneSwitchEffect switchEffect, float timeToSwitch)
         {
             if (null == scene) throw new ArgumentNullException("scene");
-            if (null != switchEffect)
-            {
-                StartEffect(switchEffect, timeToSwitch);
-            }
 
-            if (_sceneStack.Count > 0)
+            waitFrame += () =>
             {
-                _sceneStack.Pop().Deactivate();
-            }
+                if (null != switchEffect)
+                {
+                    StartEffect(switchEffect, timeToSwitch);
+                }
 
-            //change domain
-            _sceneStack.Push(scene);
-            
-            //invoke activate for new domain...
-            if (null != scene)
-            {
-                scene.LoadContents(Content);
-                scene.Activate();
-            }
+                if (_sceneStack.Count > 0)
+                {
+                    _sceneStack.Pop().Deactivate();
+                }
+
+                //change domain
+                _sceneStack.Push(scene);
+
+                //invoke activate for new domain...
+                if (null != scene)
+                {
+                    scene.LoadContents(Content);
+                    scene.Activate();
+                }
+            };
         }
 
         /// <summary>
@@ -284,23 +298,28 @@ namespace MonoGame2D
         /// <param name="timeToSwitch">The time to switch.</param>
         public void PushScene(Scene scene, ISceneSwitchEffect switchEffect, float timeToSwitch)
         {
+            
             if (null == scene) throw new ArgumentNullException("scene");
-            if (null != switchEffect)
+
+            waitFrame += () =>
             {
-                StartEffect(switchEffect, timeToSwitch);
-            }
+                if (null != switchEffect)
+                {
+                    StartEffect(switchEffect, timeToSwitch);
+                }
 
-            if (_sceneStack.Count > 0)
-            {
-                _sceneStack.Peek().Deactivate();
-            }
+                if (_sceneStack.Count > 0)
+                {
+                    _sceneStack.Peek().Deactivate();
+                }
 
-            //change domain
-            _sceneStack.Push(scene);
+                //change domain
+                _sceneStack.Push(scene);
 
-            //invoke activate for new domain...
-            scene.LoadContents(Content);
-            scene.Activate();
+                //invoke activate for new domain...
+                scene.LoadContents(Content);
+                scene.Activate();
+            };
         }
 
         /// <summary>
@@ -320,19 +339,23 @@ namespace MonoGame2D
         /// <param name="timeToSwitch">The time to switch.</param>
         public void PopScene(ISceneSwitchEffect switchEffect, float timeToSwitch)
         {
+
             if (_sceneStack.Count > 0)
             {
-                _sceneStack.Pop().Deactivate();
-
-                if (null != switchEffect)
+                waitFrame += () =>
                 {
-                    StartEffect(switchEffect, timeToSwitch);
-                }
+                    _sceneStack.Pop().Deactivate();
 
-                if (_sceneStack.Count > 0)
-                {
-                    _sceneStack.Peek().Activate();
-                }
+                    if (null != switchEffect)
+                    {
+                        StartEffect(switchEffect, timeToSwitch);
+                    }
+
+                    if (_sceneStack.Count > 0)
+                    {
+                        _sceneStack.Peek().Activate();
+                    }
+                };
             }
             else
             {
@@ -353,18 +376,12 @@ namespace MonoGame2D
             //
             var _oldOne = _oldEffectTarget;
             _oldEffectTarget = _effectTarget;
-            if (_oldOne == null)
-            {
-                PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
-                _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
-                    true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
-            }
-            else
-            {
-                PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
-                _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
-                    true, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
-            }
+            
+            //2012/10/11 Neio , turn off mipmap
+            PresentationParameters pp = graphics.GraphicsDevice.PresentationParameters;
+            _effectTarget = new RenderTarget2D(graphics.GraphicsDevice, pp.BackBufferWidth, pp.BackBufferHeight,
+                false, pp.BackBufferFormat, DepthFormat.Depth24Stencil8);
+            
             //2. Create player targeted this effect...
             _switchEffectPlayer = new SceneSwitchEffectPlayer(switchEffect, timeToSwitch, _effectTarget, _oldEffectTarget);
         }
