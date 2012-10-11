@@ -69,55 +69,55 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Fish\c0000.png">
+    <Compile Include="c0000.png">
       <Name>c0000</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_ColorKeyEnabled>False</ProcessorParameters_ColorKeyEnabled>
     </Compile>
-    <Compile Include="Fish\c0001.png">
+    <Compile Include="c0001.png">
       <Name>c0001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_ColorKeyEnabled>False</ProcessorParameters_ColorKeyEnabled>
     </Compile>
-    <Compile Include="Fish\c0002.png">
+    <Compile Include="c0002.png">
       <Name>c0002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0003.png">
+    <Compile Include="c0003.png">
       <Name>c0003</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <ProcessorParameters_ColorKeyEnabled>False</ProcessorParameters_ColorKeyEnabled>
     </Compile>
-    <Compile Include="Fish\c0004.png">
+    <Compile Include="c0004.png">
       <Name>c0004</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0005.png">
+    <Compile Include="c0005.png">
       <Name>c0005</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0006.png">
+    <Compile Include="c0006.png">
       <Name>c0006</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0007.png">
+    <Compile Include="c0007.png">
       <Name>c0007</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0008.png">
+    <Compile Include="c0008.png">
       <Name>c0008</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Fish\c0009.png">
+    <Compile Include="c0009.png">
       <Name>c0009</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>

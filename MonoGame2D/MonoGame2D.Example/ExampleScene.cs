@@ -11,6 +11,10 @@ namespace MonoGame2D.Example
     class ExampleScene : Scene
     {
         public ExampleScene() {
+
+            UseEmbeddedResouce = true;
+            resourceManager = ExampleSceneResource.ResourceManager;
+
         }
 
         
@@ -40,12 +44,12 @@ namespace MonoGame2D.Example
             List<Texture2D> list = new List<Texture2D>();
             for (int i = 0; i < 9; i++)
             {
-                var l = Context.Load<Texture2D>(String.Format("Fish\\c{0:0000}", i));
+                var l = Context.Load<Texture2D>(String.Format("c{0:0000}", i));
                 list.Add(l);
             }
             for (int i = 9; i > 0; i--)
             {
-                var l = Context.Load<Texture2D>(String.Format("Fish\\c{0:0000}", i));
+                var l = Context.Load<Texture2D>(String.Format("c{0:0000}", i));
                 list.Add(l);
             }
 

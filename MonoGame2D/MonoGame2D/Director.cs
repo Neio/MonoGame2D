@@ -63,12 +63,20 @@ namespace MonoGame2D
             _instance = this;
         }
 
-        public void SetResourceContentManager(ResourceManager resourceManager)
+        /// <summary>
+        /// Set Common Rescource Content Manager
+        /// </summary>
+        /// <param name="resourceManager"></param>
+        public void SetCommonContentManager(ResourceManager resourceManager)
         {
             Content = new ResourceContentManager(this.Services, SystemResources.ResourceManager);
         }
 
-        public void SetContentManager(String RootDirectory)
+        /// <summary>
+        /// Set Common Rescource Content Manager
+        /// </summary>
+        /// <param name="RootDirectory"></param>
+        public void SetCommonContentManager(String RootDirectory)
         {
             Content = new ContentManager(this.Services, RootDirectory);
         }
@@ -266,7 +274,9 @@ namespace MonoGame2D
 
                 if (_sceneStack.Count > 0)
                 {
-                    _sceneStack.Pop().Deactivate();
+                    var pop = _sceneStack.Pop();
+                    pop.Deactivate();
+                    pop.DeactivateResource();
                 }
 
                 //change domain
@@ -275,7 +285,8 @@ namespace MonoGame2D
                 //invoke activate for new domain...
                 if (null != scene)
                 {
-                    scene.LoadContents(Content);
+                    scene.BindService = this.Services;
+                    scene.ActivateResource();
                     scene.Activate();
                 }
             };
@@ -310,14 +321,17 @@ namespace MonoGame2D
 
                 if (_sceneStack.Count > 0)
                 {
-                    _sceneStack.Peek().Deactivate();
+                    var Peek = _sceneStack.Peek();
+                    Peek.Deactivate();
+                    Peek.DeactivateResource();
                 }
 
                 //change domain
                 _sceneStack.Push(scene);
 
                 //invoke activate for new domain...
-                scene.LoadContents(Content);
+                scene.BindService = this.Services;
+                scene.ActivateResource();
                 scene.Activate();
             };
         }
@@ -344,7 +358,10 @@ namespace MonoGame2D
             {
                 waitFrame += () =>
                 {
-                    _sceneStack.Pop().Deactivate();
+                    var pop = _sceneStack.Pop();
+                    pop.Deactivate();
+                    pop.DeactivateResource();
+
 
                     if (null != switchEffect)
                     {
@@ -353,7 +370,9 @@ namespace MonoGame2D
 
                     if (_sceneStack.Count > 0)
                     {
-                        _sceneStack.Peek().Activate();
+                        var scene = _sceneStack.Peek();
+                        scene.ActivateResource();
+                        scene.Activate();
                     }
                 };
             }

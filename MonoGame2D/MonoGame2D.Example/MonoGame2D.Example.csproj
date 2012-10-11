@@ -40,6 +40,11 @@
   <ItemGroup>
     <Compile Include="ExampleNode.cs" />
     <Compile Include="ExampleScene.cs" />
+    <Compile Include="ExampleSceneResource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ExampleSceneResource.resx</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -83,12 +88,30 @@
     <Content Include="Content\lava.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="ExampleSceneResource.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ExampleSceneResource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MonoGame2D\MonoGame2D.csproj">
       <Project>{D639BC40-138E-4EBC-8555-BE745B787C76}</Project>
       <Name>MonoGame2D</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\c0000.xnb" />
+    <None Include="Resources\c0001.xnb" />
+    <None Include="Resources\c0002.xnb" />
+    <None Include="Resources\c0003.xnb" />
+    <None Include="Resources\c0004.xnb" />
+    <None Include="Resources\c0005.xnb" />
+    <None Include="Resources\c0006.xnb" />
+    <None Include="Resources\c0007.xnb" />
+    <None Include="Resources\c0008.xnb" />
+    <None Include="Resources\c0009.xnb" />
+    <None Include="Resources\lava.xnb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
