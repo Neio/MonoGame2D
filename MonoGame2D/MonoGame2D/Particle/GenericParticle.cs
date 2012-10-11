@@ -5,6 +5,7 @@ using MonoGame2D.Utils;
 using Microsoft.Xna.Framework;
 
 //Source Code modified from Vortex2D.NET
+//
 namespace MonoGame2D.Particle {
 
     ///<summary>Implementation of highly tunable multipurpose particle object</summary>
