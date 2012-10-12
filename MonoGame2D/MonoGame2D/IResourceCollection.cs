@@ -17,7 +17,7 @@ namespace MonoGame2D
         /// <typeparam name="T">Type of resource to get.</typeparam>
         /// <param name="resourceId">The resource id.</param>
         /// <returns>Resource object</returns>
-        T Get<T>(string resourceId);
+        T Get<T>(string resourceId, params string[] extraResourceIds);
 
         /// <summary>
         /// Gets the resource by id. Resource may exists and be capable with type of generic argument or not.

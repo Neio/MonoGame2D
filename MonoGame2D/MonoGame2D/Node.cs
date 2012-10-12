@@ -17,7 +17,7 @@ namespace MonoGame2D
 
 
         Node _parent = null;
-        ContentManager _content = null;
+        //private IResourceCollection _content = null;
         List<Node> _children = new List<Node>();
         ///<summary>Location relative to parent node. It defines origin point</summary>
         private Vector2 _location = new Vector2(0,0);
@@ -31,7 +31,7 @@ namespace MonoGame2D
         private Matrix _transform;
         //bool _attached = false;
 
-        protected ContentManager Content { get { return _content; } }
+		protected IResourceCollection Resources { get ;  set; }
 
         #region Sprites
 
@@ -109,8 +109,8 @@ namespace MonoGame2D
             }
             _children.Add(Node);
             Node._parent = this;
-            if(_content !=null)
-                Node.LoadContents(_content);
+            if(Resources !=null)
+                Node.LoadContents(Resources);
         }
 
         public void RemoveChild(Node Node)
@@ -264,13 +264,13 @@ namespace MonoGame2D
         #endregion
 
 
-        public virtual void LoadContents(ContentManager Content)
+        public virtual void LoadContents(IResourceCollection Resources)
         {
-            _content = Content;
+            this.Resources = Resources;
             foreach (Node node in _children.ToArray())
             {
-                if(node.Content== null)
-                    node.LoadContents(Content);
+                if(node.Resources== null)
+                    node.LoadContents(Resources);
             }
         }
 

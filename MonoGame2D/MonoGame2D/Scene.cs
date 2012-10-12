@@ -19,7 +19,8 @@ namespace MonoGame2D
         protected ResourceManager resourceManager = null;
         protected String RootDirectory = "Content";
 
-        public ContentManager Content { get; protected set; }
+        
+		//public ResourceCollection Resources {get; protected set;}
 
         internal IServiceProvider BindService { get; set; }
 
@@ -29,25 +30,22 @@ namespace MonoGame2D
         internal void ActivateResource() {
             if (UseEmbeddedResouce)
             {
-                Content = new ResourceContentManager(BindService, resourceManager);
+                Resources = new ResourceCollection(BindService, resourceManager);
             }
             else {
-                Content = new ContentManager(BindService, RootDirectory);
+                Resources = new ResourceCollection(BindService, RootDirectory);
             }
-            LoadContents(Content);
+            LoadContents(Resources);
         }
 
         /// <summary>
         /// Unload Resource when Deactivated
         /// </summary>
         internal void DeactivateResource() {
-            if (Content != null)
-            {
-                Content.Unload();
-                Content.Dispose();
-                Content = null;
-                
-            }
+            if(Resources!=null){
+				((ResourceCollection)Resources).Dispose();
+				Resources = null;
+			}
             UnloadContents();
         }
 

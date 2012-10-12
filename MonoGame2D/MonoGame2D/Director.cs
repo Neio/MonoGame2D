@@ -393,7 +393,9 @@ namespace MonoGame2D
             if (timeToSwitch < 0.05f) throw new ArgumentException("Scene switch effect should be at least 50 ms length", "timeToSwitch");
 
             //
-            var _oldOne = _oldEffectTarget;
+			if(_oldEffectTarget!=null){
+				_oldEffectTarget.Dispose();
+			}
             _oldEffectTarget = _effectTarget;
             
             //2012/10/11 Neio , turn off mipmap

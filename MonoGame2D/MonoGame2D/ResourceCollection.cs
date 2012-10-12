@@ -3,27 +3,74 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MonoGame2D.Utils;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System.Resources;
 using Microsoft.Xna.Framework.Content;
+using System.IO;
 
 namespace MonoGame2D
 {
 
-	public class ResourceCollection: IResourceCollection
+	public class ResourceCollection: IResourceCollection, IDisposable
 	{
 		ContentManager _content;
+		String _root;
+		ResourceManager _resourceManager;
+		bool _isEmbeddedResourceType = false;
 
-		public ResourceCollection(ContentManager content)
+		public ResourceCollection(IServiceProvider service, String Root)
 		{
-
-			_content = content;
+			_root = Root;
+			_isEmbeddedResourceType = false;
+			_content = new ContentManager(service, _root);
+			//_content = content;
 		}
 
-		public T Get<T>(string resourceId){
+		public ResourceCollection(IServiceProvider service, ResourceManager resourceManager){
+			_resourceManager = resourceManager;
+			_isEmbeddedResourceType = true;
+			_content = new ResourceContentManager(service, resourceManager);
+		}
 
-			if(typeof(T) == typeof(Particle.BaseParticle)){
+		public void Dispose()
+		{
+
+			if (_content != null)
+            {
+                _content.Unload();
+                _content.Dispose();
+                _content = null;
+                
+            }
+		}
+
+
+
+		public T Get<T>(string resourceId, params string[] extraResourceIds){
+
+			if(typeof(T) == typeof(Particle.ParticleEffect)){
 
 				//process particle
-				throw new NotImplementedException();
+				Stream dataStream;
+				if(_isEmbeddedResourceType)
+				{
+					dataStream = new MemoryStream( (byte[])_resourceManager.GetObject(resourceId));
+
+					//embedded resource
+				}
+				else{
+					FileSystem.RootDirectory = _root;
+					var filename = FileSystem.GetFilename(resourceId);
+					FileInfo fileInfo = new FileInfo(filename);
+					dataStream = fileInfo.OpenRead();
+				}
+				if(extraResourceIds.Length ==1){
+					return (T)(Object)new Particle.ParticleEffect(dataStream, _content.Load<Texture2D>(extraResourceIds[0])) ;
+				}else{
+					return (T)(Object)new Particle.ParticleEffect(dataStream);
+				}
+				//throw new NotImplementedException();
 				//return (T) new Particle.GenericParticle(1) ;
 
 			}

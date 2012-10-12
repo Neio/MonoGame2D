@@ -19,12 +19,12 @@ namespace MonoGame2D.Example
 
 		}
         
-        public override void LoadContents(ContentManager Context)
+        public override void LoadContents(IResourceCollection Context)
         {
             base.LoadContents(Context);
             if (!_load )
             {
-                var sp = new Sprite(Context.Load<Texture2D>(_asset));
+                var sp = new Sprite(Context.Get<Texture2D>(_asset));
                 AddChild(sp);
                 _load = true;
             }

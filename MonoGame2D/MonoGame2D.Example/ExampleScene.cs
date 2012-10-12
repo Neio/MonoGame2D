@@ -24,7 +24,7 @@ namespace MonoGame2D.Example
         }
 
         
-        public override void LoadContents(Microsoft.Xna.Framework.Content.ContentManager Context)
+        public override void LoadContents(IResourceCollection Context)
         {
             base.LoadContents(Context);
 
@@ -51,12 +51,12 @@ namespace MonoGame2D.Example
             List<Texture2D> list = new List<Texture2D>();
             for (int i = 0; i < 9; i++)
             {
-                var l = Context.Load<Texture2D>(String.Format("c{0:0000}", i));
+                var l = Context.Get<Texture2D>(String.Format("c{0:0000}", i));
                 list.Add(l);
             }
             for (int i = 9; i > 0; i--)
             {
-                var l = Context.Load<Texture2D>(String.Format("c{0:0000}", i));
+                var l = Context.Get<Texture2D>(String.Format("c{0:0000}", i));
                 list.Add(l);
             }
 

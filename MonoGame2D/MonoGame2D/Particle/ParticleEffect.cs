@@ -74,19 +74,20 @@ namespace MonoGame2D.Particle {
         }
 
         ///<summary>Create particle effect from file</summary>
-        public ParticleEffect(string fileName) {
-            if (string.IsNullOrEmpty(fileName)) throw new ArgumentNullException("fileName");
-
-            ResourceFileInfo resFile = new ResourceFileInfo(fileName);
-            XmlSerializer serializer = new XmlSerializer(typeof(ParticleEffectFile));
-            ParticleEffectFile effectFileContent = (ParticleEffectFile)serializer.Deserialize(resFile.OpenStream());
+        public ParticleEffect(Stream assetStream) {
+//	            if (string.IsNullOrEmpty(fileName)) throw new ArgumentNullException("fileName");
+//
+//	            ResourceFileInfo resFile = new ResourceFileInfo(fileName);
+	            XmlSerializer serializer = new XmlSerializer(typeof(ParticleEffectFile));
+//				var stream = resFile.OpenStream();
+            ParticleEffectFile effectFileContent = (ParticleEffectFile)serializer.Deserialize(assetStream);
 
             Params = effectFileContent.Effect;
             Emitter = effectFileContent.Emitter;
         }
 
-        public ParticleEffect(string fileName, Texture2D sprite)
-            : this(fileName) {
+        public ParticleEffect(Stream assetStream, Texture2D sprite)
+            : this(assetStream) {
                 SpriteSource = sprite;
 		}
 

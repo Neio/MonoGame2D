@@ -1,31 +1,54 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release|Mixed Platforms" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="MonoGame2D.Example/ExampleScene.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MonoGame2D/ResourceCollection.cs">
     <Files>
-      <File FileName="MonoGame2D/Node.cs" Line="9" Column="21" />
-      <File FileName="MonoGame2D/Director.cs" Line="289" Column="43" />
+      <File FileName="MonoGame2D/Node.cs" Line="267" Column="29" />
+      <File FileName="MonoGame2D/Director.cs" Line="9" Column="1" />
       <File FileName="MonoGame2D/Canvas/Rect.cs" Line="8" Column="1" />
       <File FileName="MonoGame2D.Example/Main.cs" Line="46" Column="37" />
       <File FileName="MonoGame2D.Example/Program.cs" Line="1" Column="1" />
       <File FileName="MonoGame2D/SystemResources.Designer.cs" Line="42" Column="113" />
       <File FileName="MonoGame2D/TextLayout.cs" Line="1" Column="1" />
-      <File FileName="MonoGame2D.Example/ExampleScene.cs" Line="34" Column="13" />
+      <File FileName="MonoGame2D.Example/ExampleScene.cs" Line="43" Column="16" />
       <File FileName="MonoGame2D/FontOptions.cs" Line="1" Column="1" />
       <File FileName="MonoGame2D/GameFont.cs" Line="18" Column="59" />
       <File FileName="MonoGame2D/GeometryHelper.cs" Line="87" Column="44" />
-      <File FileName="MonoGame2D.Example/ExampleNode.cs" Line="21" Column="66" />
+      <File FileName="MonoGame2D.Example/ExampleNode.cs" Line="22" Column="42" />
       <File FileName="MonoGame2D/Scene.cs" Line="37" Column="25" />
+      <File FileName="MonoGame2D/Effects/ScreenSwitch.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/BaseParticle.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/PresetNodes/VideoNode.cs" Line="18" Column="7" />
+      <File FileName="MonoGame2D/Script/TimeLine.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Script/TimeAction.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Script/IActionChain.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Utils/FileSystem.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Utils/GradientColorTable.cs" Line="101" Column="25" />
+      <File FileName="MonoGame2D/Utils/GradientStop.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Utils/IBundle.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Utils/Providers.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/IParticleProvider.cs" Line="5" Column="41" />
+      <File FileName="MonoGame2D/Particle/ParticleSystem.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/GenericParticle.cs" Line="8" Column="3" />
+      <File FileName="MonoGame2D/Particle/ParticleCollection.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/ParticleEditorSettings.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/ParticleEffect.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/ParticleEffectFile.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/ParticleEffectParameters.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/Range.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/Particle/Types.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/ResourceCollection.cs" Line="46" Column="26" />
+      <File FileName="MonoGame2D/IResourceCollection.cs" Line="31" Column="9" />
+      <File FileName="MonoGame2D/ISpriteEntity.cs" Line="1" Column="1" />
+      <File FileName="MonoGame2D/ISpriteCollection.cs" Line="26" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
           <Option id="ShowAllFiles" value="True" />
-          <Node name="MonoGame2D.Example.OSX" expanded="True">
-            <Node name="Content" expanded="True" />
-            <Node name="Resources" expanded="True" />
-            <Node name="ExampleScene.cs" selected="True" />
+          <Node name="MonoGame2D.Example.OSX" expanded="True" />
+          <Node name="MonoGame2D.MacOS" expanded="True">
+            <Node name="ResourceCollection.cs" selected="True" />
           </Node>
-          <Node name="MonoGame2D.MacOS" expanded="True" />
         </State>
       </Pad>
     </Pads>
